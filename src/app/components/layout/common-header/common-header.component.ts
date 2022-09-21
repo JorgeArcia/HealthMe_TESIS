@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-common-header',
@@ -7,25 +8,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./common-header.component.css']
 })
 export class CommonHeaderComponent implements OnInit {
-
+  
+  private JWT : string | null = '' || null;
   isLogged : boolean = false;
-  routes: any;
+  routes: any[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(){
-    this.setRoutes();
+    this.JWT = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : null;
+    if(this.JWT) {
+      this.setLoggedRoutes();
+    } else {
+      this.setRoutes();
+    }
   }
-  setRoutes() {
+
+  private setLoggedRoutes() {
+    this.isLogged = true;
+    this.routes = [
+      { link: '/home', detail: 'Home' },
+      { link: '/auth', detail: 'Signin' },
+      { link: '/auth/signup', detail: 'Signup' },
+      { link: '/auth/panel', detail: 'Panel selector' },
+    ];
+  }
+  
+  private setRoutes() {
     this.isLogged = false;
     this.routes = [
       { link: '/home', detail: 'Home' },
-      { link: '/auth', detail: 'Patients' },
-      { link: '/auth/prof', detail: 'Professionals' },
-      { link: '/auth/oper', detail: 'Operators' },
-      { link: '/auth/admin', detail: 'Administrators' },
+      { link: '/auth', detail: 'Signin' },
+      { link: '/auth/signup', detail: 'Signup' },
     ];
+  } 
+
+  logout() {
+    this.isLogged = false;
+    localStorage.clear();
+    this.setRoutes();
+    this.router.navigate(['home']);
   }
+
 }

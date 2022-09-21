@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/common/auth.service';
-import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-signin',
@@ -34,10 +33,19 @@ export class SigninComponent implements OnInit {
   }
 
   async signinUser() {
-    const { token: JWT } : any = await this.service.authenticate(this.form.value);
-    const { roles } : any = jwt_decode(JWT);
-    
-    JWT && Array.isArray(roles) && roles.length > 0 ? (localStorage.setItem('JWT', JWT), this.router.navigate(['admin', 'panels',])) : this.form.reset();
+      
+    const { ok, user, token } : any = await this.service.authenticate(this.form.value);
+
+    if(ok) {
+      localStorage.setItem('JWT', token);
+      this.router.navigate(['auth', 'panel']);
+    } else {
+      localStorage.clear();
+      this.router.navigate(['auth']);
+    }
+
+    this.form.reset();
+
   }
   
 

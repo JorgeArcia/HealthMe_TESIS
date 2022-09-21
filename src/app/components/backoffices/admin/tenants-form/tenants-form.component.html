@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Tenant form</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <form [formGroup]="form" (ngSubmit)="saveTenant()" *ngIf="isLoaded">
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="detail" placeholder="Detalle">
+                    <span class="text-danger" *ngIf="form?.get('detail').status != 'VALID' && form.get('detail').touched">El detalle es obligatorio.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="phone" placeholder="Telefono">
+                    <!-- <span class="text-danger" *ngIf="form?.get('phone').status != 'VALID' && form.get('phone').touched">El telefono es obligatorio.</span> -->
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="cuit" placeholder="CUIT">
+                    <!-- <span class="text-danger" *ngIf="form?.get('phone').status != 'VALID' && form.get('phone').touched">El telefono es obligatorio.</span> -->
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="address" placeholder="Direccion">
+                    <!-- <span class="text-danger" *ngIf="form?.get('address').status != 'VALID' && form.get('address').touched">La direccion es obligatoria.</span> -->
+                </div>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Guardar Tenant</button>
+                <button type="button" class="btn btn-warning btn-block" routerLink="/admin/tenants">Quit</button>
+            </form>
+        </div>
+    </div>
+</div>
