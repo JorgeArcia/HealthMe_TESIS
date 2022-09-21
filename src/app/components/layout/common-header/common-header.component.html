@@ -4,9 +4,17 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item pl-3 pr-3" *ngFor="let r of routes">
-                <a class="nav-link text-white" [routerLink]="r.link">{{r.detail}}</a>
+                <a class="nav-link text-white" [routerLink]="r.link">{{ r.detail }}</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="isLogged">
+            <li class="nav-item pl-3 pr-3">
+                <a class="nav-link text-white" routerLink="/auth/panel"> My profiles </a>
+            </li>
+            <li class="nav-item pl-3 pr-3">
+                <a class="nav-link text-white" (click)="logout()"> Logout</a>
             </li>
         </ul>
     </div>

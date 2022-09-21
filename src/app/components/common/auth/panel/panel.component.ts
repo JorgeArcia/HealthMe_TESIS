@@ -61,7 +61,9 @@ export class PanelComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.isLogged = false;
-    this.router.navigate(['home']);
+    this.router.navigate(['home']).then(()=> {
+      window.location.reload();
+    });;
   }
 
 }

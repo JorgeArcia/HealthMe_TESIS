@@ -33,12 +33,14 @@ export class SigninComponent implements OnInit {
   }
 
   async signinUser() {
-      
+  
     const { ok, user, token } : any = await this.service.authenticate(this.form.value);
 
     if(ok) {
       localStorage.setItem('JWT', token);
-      this.router.navigate(['auth', 'panel']);
+      this.router.navigate(['auth', 'panel']).then(()=> {
+        window.location.reload();
+      });
     } else {
       localStorage.clear();
       this.router.navigate(['auth']);

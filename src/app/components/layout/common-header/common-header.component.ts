@@ -20,24 +20,12 @@ export class CommonHeaderComponent implements OnInit {
   ngOnInit(){
     this.JWT = localStorage.getItem('JWT') ? localStorage.getItem('JWT') : null;
     if(this.JWT) {
-      this.setLoggedRoutes();
-    } else {
-      this.setRoutes();
-    }
+      this.isLogged = true;
+    } 
+    this.setRoutes();
   }
 
-  private setLoggedRoutes() {
-    this.isLogged = true;
-    this.routes = [
-      { link: '/home', detail: 'Home' },
-      { link: '/auth', detail: 'Signin' },
-      { link: '/auth/signup', detail: 'Signup' },
-      { link: '/auth/panel', detail: 'Panel selector' },
-    ];
-  }
-  
   private setRoutes() {
-    this.isLogged = false;
     this.routes = [
       { link: '/home', detail: 'Home' },
       { link: '/auth', detail: 'Signin' },
@@ -48,7 +36,6 @@ export class CommonHeaderComponent implements OnInit {
   logout() {
     this.isLogged = false;
     localStorage.clear();
-    this.setRoutes();
     this.router.navigate(['home']);
   }
 
