@@ -11,7 +11,7 @@ export class PanelComponent implements OnInit {
 
   private JWT : string | null = localStorage.getItem('JWT')? localStorage.getItem('JWT') : null;
   isLogged : boolean = false;
-  email: string | null = null;
+  user: any | null = null;
   routes: any[] = [];
   roles: any[]= [];
 
@@ -25,6 +25,7 @@ export class PanelComponent implements OnInit {
       this.router.navigate(['home']);
     }
     const { user } : any = jwt_decode(this.JWT ? this.JWT : '');
+    this.user = user;
     this.setRoutes();
     this.setRoles(user.roles);
   }
