@@ -11,7 +11,8 @@ export class CommonHeaderComponent implements OnInit {
   
   private JWT : string | null = '' || null;
   isLogged : boolean = false;
-  routes: any[] = [];
+  routesNavBar: any[] = [];
+  routesSignin: any[] = [];
 
   constructor(
     private router: Router,
@@ -26,8 +27,11 @@ export class CommonHeaderComponent implements OnInit {
   }
 
   private setRoutes() {
-    this.routes = [
+    this.routesNavBar = [
       { link: '/home', detail: 'Home' },
+
+    ];
+    this.routesSignin = [
       { link: '/auth', detail: 'Signin' },
       { link: '/auth/signup', detail: 'Signup' },
     ];

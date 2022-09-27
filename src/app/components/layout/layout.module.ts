@@ -7,6 +7,8 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { OperatorHeaderComponent } from './operator-header/operator-header.component';
 import { ProfessionalHeaderComponent } from './professional-header/professional-header.component';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
+import { CommonBannerComponent } from './common-banner/common-banner.component';
+import { CommonFooterComponent } from './common-footer/common-footer.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
     OperatorHeaderComponent,
     ProfessionalHeaderComponent,
     PatientHeaderComponent,
+    CommonBannerComponent,
+    CommonFooterComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +30,8 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
     OperatorHeaderComponent,
     ProfessionalHeaderComponent,
     PatientHeaderComponent,
+    CommonBannerComponent,
+    CommonFooterComponent
   ]
 })
 export class LayoutModule { }

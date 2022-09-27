@@ -3,12 +3,23 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item pl-3 pr-3" *ngFor="let r of routes">
-                <a class="nav-link text-white" [routerLink]="r.link">{{ r.detail }}</a>
-            </li>
-        </ul>
+    <div class="navbar-brand text-white styleNavBar" id="navbarNav">
+        <div class="d-flex justify-content-between">
+            <div class="mr-auto p-2">
+                <ul class="navbar-nav">
+                    <li class="nav-item pl-3 pr-3" *ngFor="let r of routesNavBar">
+                        <a class="nav-link text-white" [routerLink]="r.link">{{r.detail}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="p-2">
+                <ul class="navbar-nav">
+                    <li class="nav-item pl-3 pr-3" *ngFor="let s of routesSignin">
+                        <a class="nav-link text-white" [routerLink]="s.link">{{s.detail}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <ul class="navbar-nav ml-auto" *ngIf="isLogged">
             <li class="nav-item pl-3 pr-3">
                 <a class="nav-link text-white" routerLink="/auth/panel"> My profiles </a>
