@@ -1,0 +1,15 @@
+.banner {
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 5px;
+}
+
+h1 p {
+    color: white;
+}
+
+.backgroundColor {
+    background: linear-gradient(90deg, rgba(17, 210, 205, 1) 2%, rgba(52, 139, 210, 0.8785889355742297) 41%, rgba(16, 138, 179, 1) 76%);
+}
