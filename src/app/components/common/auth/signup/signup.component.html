@@ -1,0 +1,52 @@
+
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 img-wrapper rounded border">
+            <!-- <img class='img-fluid imagen' src="../../../../../assets/sign-in.jpg" alt=""> -->
+        </div>
+        <div class="col-md-8 col-lg-6 rounded border signin-wrapper">
+            <div class="signin d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto border rounded p-4 justify-content-center">
+                            <h1 class="signin-heading mb-4 font-weight-bold ">Registrate!</h1>
+                            <form [formGroup]="form" (ngSubmit)="signupUser()" *ngIf="isLoaded">
+                                <div class="form-group form-floating mb-3">
+                                    <input type="text" formControlName="name" class="form-control" id="floatingInput" placeholder="Name">
+                                    <label for="floatingInput">Name</label>
+                                    <span class="text-danger font-weight-bold mt-1 " [ngClass]="form.get('name').status != 'VALID' && form.get('name').touched ? 'visible' : 'invisible' ">Nombre invalido</span>
+                                </div>
+
+                                <div class="form-group form-floating mb-3">
+                                    <input type="text" formControlName="surname" class="form-control" id="floatingInput" placeholder="Surname">
+                                    <label for="floatingInput">Surname</label>
+                                    <span class="text-danger font-weight-bold mt-1 " [ngClass]="form.get('surname').status != 'VALID' && form.get('surname').touched ? 'visible' : 'invisible' ">Apellido invalido</span>
+                                </div>
+
+                                <div class="form-group form-floating mb-3">
+                                    <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="Email">
+                                    <label for="floatingInput">Email address</label>
+                                    <span class="text-danger font-weight-bold mt-1 " [ngClass]="form.get('email').status != 'VALID' && form.get('email').touched ? 'visible' : 'invisible' ">Email invalido</span>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" formControlName="password" id="floatingPassword" class="form-control" placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                    <span class="text-danger font-weight-bold mt-1" [ngClass]="form.get('password').status != 'VALID' && form.get('password').touched ? 'visible' : 'invisible' ">Contraseña incorrecta</span>
+                                </div>
+
+
+                                <div class="d-grid">
+                                    <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-dark btn-login text-uppercase fw-bold mb-2">Iniciar sesion</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

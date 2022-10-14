@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeModule } from './components/common/home/home.module';
+import { SignupModule } from './components/common/auth/signup/signup.module';
 import { SigninModule } from './components/common/auth/signin/signin.module';
 import { PanelModule } from './components/common/auth/panel/panel.module';
 
@@ -25,7 +26,7 @@ const routes: Routes = [
 
   // Common routes
   { path: 'home', loadChildren: () => HomeModule, data: { showHeader: true }},
-  { path: 'signup', loadChildren: () => SigninModule, data: { showHeader: true }},
+  { path: 'signup', loadChildren: () => SignupModule, data: { showHeader: true }},
   { path: 'auth', loadChildren: () => SigninModule, data: { showHeader: true }},
   { path: 'auth/panel', canActivate: [AuthGuard], loadChildren: () => PanelModule, data: { showHeader: true }},
 

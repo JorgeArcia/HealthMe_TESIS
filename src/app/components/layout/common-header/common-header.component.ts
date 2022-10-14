@@ -33,7 +33,7 @@ export class CommonHeaderComponent implements OnInit {
     ];
     this.routesSignin = [
       { link: '/auth', detail: 'Ingresar' },
-      // { link: '/auth/signup', detail: 'Signup' },
+      { link: '/signup', detail: 'Signup' },
     ];
   } 
 
