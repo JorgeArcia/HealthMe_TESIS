@@ -8,9 +8,11 @@ import { PanelModule } from './components/common/auth/panel/panel.module';
 
 import { AdminDashboardModule } from './components/backoffices/admin/admin-dashboard/admin-dashboard.module';
 import { TenantsFormModule } from './components/backoffices/admin/tenants-form/tenants-form.module';
-import { OperatorsFormModule } from './components/backoffices/admin/operators-form/operators-form.module';
 import { TenantsListModule } from './components/backoffices/admin/tenants-list/tenants-list.module';
-import { OperatorsListModule } from './components/backoffices/admin/operators-list/operators-list.module';
+import { TenantOperatorsModule } from './components/backoffices/admin/tenant-operators/tenant-operators.module';
+import { TenantOperatorLinkModule } from './components/backoffices/admin/tenant-operator-link/tenant-operator-link.module';
+// import { OperatorsFormModule } from './components/backoffices/admin/operators-form/operators-form.module';
+// import { OperatorsListModule } from './components/backoffices/admin/operators-list/operators-list.module';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
@@ -33,9 +35,11 @@ const routes: Routes = [
   // Admin routes [ /Tenants, /Operators ]
   { path: 'admin/dashboard', canActivate: [AdminAuthGuard], loadChildren: () => AdminDashboardModule, data: { showHeader: false, showAdminHeader: true }},
   { path: 'admin/tenants', canActivate: [AdminAuthGuard], loadChildren: () => TenantsListModule, data: { showHeader: false, showAdminHeader: true }},
-  { path: 'admin/tenants/:id', canActivate: [AdminAuthGuard], loadChildren: () => TenantsFormModule, data: { showHeader: false, showAdminHeader: true }},
-  { path: 'admin/operators', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsListModule, data: { showHeader: false, showAdminHeader: true }},
-  { path: 'admin/operators/:id', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/tenants/:tenantId', canActivate: [AdminAuthGuard], loadChildren: () => TenantsFormModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/tenants/:tenantId/operators', canActivate: [AdminAuthGuard], loadChildren: () => TenantOperatorsModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/tenants/:tenantId/operators/link', canActivate: [AdminAuthGuard], loadChildren: () => TenantOperatorLinkModule, data: { showHeader: false, showAdminHeader: true }},
+  // { path: 'admin/operators', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsListModule, data: { showHeader: false, showAdminHeader: true }},
+  // { path: 'admin/operators/:id', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
   
   // Operator routes [ Tenants, Operators ]
   { path: 'operator/dashboard', canActivate: [OperatorAuthGuard], loadChildren: () => AdminDashboardModule, data: { showHeader: false, showOperatorHeader: true }},

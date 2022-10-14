@@ -21,7 +21,6 @@ export class TenantsFormComponent implements OnInit {
     cuit: '',
     address: '',
   };
-  //isLoaded : boolean;
 
   constructor(
     private router : Router,
@@ -30,7 +29,7 @@ export class TenantsFormComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.reason = this.activatedRoute?.snapshot.params['id'];
+    this.reason = this.activatedRoute?.snapshot.params['tenantId'];
     if(this.reason === 'new') {
       this.isNew = true;
       this.createForm(this.formCreate);
