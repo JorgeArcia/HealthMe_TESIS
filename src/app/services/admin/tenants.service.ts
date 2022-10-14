@@ -51,4 +51,13 @@ export class TenantsService extends BaseService {
     }
   }
 
+  readTenantOperators(id: any) {
+    try {
+      this.setEndpoint(`admin/tenants/${id}/operators`);
+      return this.get();
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

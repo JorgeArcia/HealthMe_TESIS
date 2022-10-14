@@ -20,6 +20,7 @@
                     <th scope="col">CUIT</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Habilitado</th>
+                    <th scope="col">Operadores</th>
                     <th scope="col">Modificar</th>
                     <th scope="col">Eliminar</th>
                   </tr>
@@ -32,6 +33,9 @@
                     <th scope="row">{{tenant.cuit}}</th>
                     <th scope="row">{{tenant.address}}</th>
                     <th scope="row">{{tenant.available}}</th>
+                    <td>
+                        <button class="btn btn-info fa fa-employee" routerLink="/admin/tenants/{{tenant.id}}/operators">Operators</button>
+                    </td>
                     <td>
                         <button class="btn btn-warning fa fa-edit" routerLink="/admin/tenants/{{tenant.id}}">Modificar</button>
                     </td>

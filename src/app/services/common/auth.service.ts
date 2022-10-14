@@ -15,4 +15,13 @@ export class AuthService extends BaseService {
     }
   }
 
+  signup(obj : any) {
+    try {
+      this.setEndpoint('auth/signup');
+      return this.post(obj);
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }
