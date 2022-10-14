@@ -1,0 +1,15 @@
+div.img-wrapper {
+    background-image: url('../../../../../assets/sign-in.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.signin {
+    min-height: 100vh;
+    background: rgb(81, 81, 215, 0.85);
+    /* background: linear-gradient(90deg, rgba(81,81,215,0.7878501742493873) 0%, rgba(81,81,215,0.5665616588432247) 100%); */
+}
+
+.login-heading {
+    font-weight: 300;
+}

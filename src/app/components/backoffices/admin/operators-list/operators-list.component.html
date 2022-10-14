@@ -1,1 +1,43 @@
-<p>operators-list works!</p>
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Operadores de Clinica</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8 col-sm-12 text-right">
+            <a class="btn btn-success btn-md" routerLink="/admin/operators/new">Nuevo Operador de clinica</a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Contraseña</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let operator of operators">
+                        <th scope="row">{{operator.id}}</th>
+                        <th scope="row">{{operator.nombre}}</th>
+                        <th scope="row">{{operator.apellido}}</th>
+                        <th scope="row">{{operator.telefono}}</th>
+                        <th scope="row">{{operator.contrasenia}}</th>
+                        <td>
+                            <button class="btn btn-warning fa fa-edit" routerLink="/admin/operators/{{operator.id}}">Modificar</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger fa fa-trash" (click)="deleteOperator(operator.id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

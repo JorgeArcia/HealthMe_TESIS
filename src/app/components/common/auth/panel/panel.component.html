@@ -1,16 +1,13 @@
-<div class="container-fluid">
+<div class="container customStyle">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mt-5">
             <h1>Bienvenido/a {{ user.name }} {{ user.surname }}, seleccione el perfil que desea: </h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-3" *ngFor="let route of routes">
             <div class="form-group">
-                <button 
-                    type="button" 
-                    class="btn btn-primary form-control btn-block"
-                    (click)="linkTo(route.link)">
+                <button type="button" class="btn btn-primary form-control btn-block" (click)="linkTo(route.link)">
                     {{ route.detail }}
                 </button>
             </div>
@@ -20,13 +17,10 @@
         <div class="col-md-9 ">
 
         </div>
-        <div class="col-md-3 ">
+        <div class="customStyleBtnSalir">
             <div class="form-group">
-                <button 
-                    type="button" 
-                    class="btn btn-danger form-control btn-block"
-                    (click)="logout()">
-                    Salir...
+                <button type="button" class="btn btn-danger form-control btn-block" (click)="logout()">
+                    Salir
                 </button>
             </div>
         </div>

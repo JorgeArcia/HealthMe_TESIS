@@ -32,9 +32,9 @@ export class AdminHeaderComponent implements OnInit {
     this.isLogged = true;
     this.routes = [
       { link: '/auth/panel', detail: 'Panel' },
-      { link: '/admin/dashboard', detail: 'Dashboard' },
-      { link: '/admin/tenants', detail: 'Tenants' },
-      { link: '/admin/operators', detail: 'Operators' },
+      // { link: '/admin/dashboard', detail: 'Dashboard' },
+      { link: '/admin/tenants', detail: 'Consultorios' },
+      { link: '/admin/operators', detail: 'Operadores' },
     ];
   }
 

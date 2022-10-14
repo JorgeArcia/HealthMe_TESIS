@@ -1,0 +1,10 @@
+.customStyle {
+    min-height: 500px;
+}
+
+.customStyleBtnSalir {
+    position: relative;
+    top: 300px;
+    left: 100px;
+    max-width: 300px;
+}

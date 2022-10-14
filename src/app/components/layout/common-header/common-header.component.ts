@@ -28,12 +28,12 @@ export class CommonHeaderComponent implements OnInit {
 
   private setRoutes() {
     this.routesNavBar = [
-      { link: '/home', detail: 'Home' },
+      { link: '/home', detail: 'Portal' },
 
     ];
     this.routesSignin = [
-      { link: '/auth', detail: 'Signin' },
-      { link: '/auth/signup', detail: 'Signup' },
+      { link: '/auth', detail: 'Ingresar' },
+      // { link: '/auth/signup', detail: 'Signup' },
     ];
   } 
 

@@ -1,24 +1,45 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-sm-12">
-            <h1>Sign in</h1>
-            <hr>
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 img-wrapper rounded border">
+            <!-- <img class='img-fluid imagen' src="../../../../../assets/sign-in.jpg" alt=""> -->
+        </div>
+        <div class="col-md-8 col-lg-6 rounded border signin-wrapper">
+            <div class="signin d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto border rounded p-4 justify-content-center">
+                            <h1 class="signin-heading mb-4 font-weight-bold ">Bienvenido!</h1>
+                            <form [formGroup]="form" (ngSubmit)="signinUser()" *ngIf="isLoaded">
+                                <div class="form-group form-floating mb-3">
+                                    <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="Email">
+                                    <label for="floatingInput">Email address</label>
+                                    <span class="text-white font-weight-bold mt-1 " [ngClass]="form.get('email').status != 'VALID' && form.get('email').touched ? 'visible' : 'invisible' ">Email invalido</span>
+                                    <!-- <span class="text-danger" *ngIf="form.get('email').status != 'VALID' && form.get('email').touched" >Email invalido</span> -->
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" formControlName="password" id="floatingPassword" class="form-control" placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                    <span class="text-dark font-weight-bold mt-1" [ngClass]="form.get('password').status != 'VALID' && form.get('password').touched ? 'visible' : 'invisible' ">Contraseña incorrecta</span>
+                                </div>
+
+
+                                <div class="d-grid">
+                                    <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-dark btn-login text-uppercase fw-bold mb-2">Iniciar sesion</button>
+                                    <!-- <div class="text-center">
+                                    <a class="small" href="#">Forgot password?</a>
+                                  </div> -->
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-sm-12">
-            <form [formGroup]="form" (ngSubmit)="signinUser()" *ngIf="isLoaded">
-                <div class="form-group">
-                    <input type="email" formControlName="email" class="form-control" placeholder="Email">
-                    <span class="text-danger" *ngIf="form.get('email').status != 'VALID' && form.get('email').touched">El email es requerido.</span>
-                </div>
-                <div class="form-group">
-                    <input type="password" formControlName="password" class="form-control" placeholder="Password">
-                    <span class="text-danger" *ngIf="form.get('password').status != 'VALID' && form.get('password').touched">La contraseña es requerida.</span>
-                </div>
-                <hr>
-                <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block btn-md">Inicia sesion.</button>
-            </form>
-        </div>
-    </div>
+
 </div>
