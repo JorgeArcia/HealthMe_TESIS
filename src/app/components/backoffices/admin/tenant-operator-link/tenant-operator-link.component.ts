@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UsersService } from '../../../../services/admin/users.service';
+import { OperatorsService } from '../../../../services/admin/operators.service';
 
 @Component({
   selector: 'app-tenant-operator-link',
@@ -26,6 +27,7 @@ export class TenantOperatorLinkComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private usersService : UsersService,
+    private operatorsService : OperatorsService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -49,8 +51,11 @@ export class TenantOperatorLinkComponent implements OnInit {
     });
   }
 
-  async linkUserToTenantOperators() {
-
+  async linkUserToTenantOperators(id: any) {
+    console.log(`asdasda`);
+    console.log(id);
+    await this.operatorsService.createOperator({id});
+    console.log(`Added!`)
   }
 
 }

@@ -11,7 +11,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <form [formGroup]="form" (ngSubmit)="linkUserToTenantOperators()" *ngIf="isLoaded">
+            <form [formGroup]="form" *ngIf="isLoaded">
                 <div class="form-group mb-3">
                     <label for="exampleInputDetail" class="form-label">Detalle</label>
                     <input type="text" class="form-control" formControlName="detail" placeholder="Detalle">
@@ -45,7 +45,7 @@
                         <th scope="row">{{user.email}}</th>
                         <th scope="row">{{user.isOperator}}</th>
                         <td>
-                            <button type="button" class="btn btn-info" onclick="linkUserToTenantOperators(user.id)">Link</button>
+                            <button type="button" class="btn btn-info" (click)="linkUserToTenantOperators(user.id)">Link</button>
                         </td>
                     </tr>
                   </tbody>
