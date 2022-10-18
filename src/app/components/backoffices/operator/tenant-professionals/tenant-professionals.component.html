@@ -1,12 +1,12 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Tenants operators</h1>
+            <h1>Tenants Professionals</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-success btn-md" routerLink="/admin/tenants/{{tenant.id}}/operators/link">Add operator</a>
+            <a class="btn btn-success btn-md" routerLink="/operator/tenants/create">Add Professional</a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -18,11 +18,11 @@
                         <th scope="col">Name</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Unlink</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let operator of tenant.operators">
+                    <tr *ngFor="let operator of operators">
                         <th scope="row">{{operator.id}}</th>
                         <th scope="row">{{operator.name}}</th>
                         <th scope="row">{{operator.surname}}</th>
@@ -35,4 +35,6 @@
             </table>
         </div>
     </div>
+
+    <p>Por ahora esto esta con el servicio admin/operators (deberia ser uno de operators) es para ir armando la navegacion</p>
 </div>
