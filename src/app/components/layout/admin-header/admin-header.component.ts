@@ -34,7 +34,7 @@ export class AdminHeaderComponent implements OnInit {
       { link: '/auth/panel', detail: 'Lobby' },
       { link: '/admin/dashboard', detail: 'Dashboard' },
       { link: '/admin/tenants', detail: 'Tenants' },
-      { link: '/admin/tenants', detail: 'Operators' },
+      { link: '/admin/operators', detail: 'Operators' },
     ];
   }
 

@@ -52,10 +52,11 @@ export class TenantOperatorLinkComponent implements OnInit {
   }
 
   async linkUserToTenantOperators(id: any) {
-    console.log(`asdasda`);
-    console.log(id);
     await this.operatorsService.createOperator({id});
-    console.log(`Added!`)
+  }
+
+  async createUserToTenantOperators(id : any) {
+    await this.operatorsService.createOperator({id});
   }
 
 }

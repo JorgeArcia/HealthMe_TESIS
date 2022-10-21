@@ -11,14 +11,24 @@ import { TenantsFormModule } from './components/backoffices/admin/tenants-form/t
 import { TenantsListModule } from './components/backoffices/admin/tenants-list/tenants-list.module';
 import { TenantOperatorsModule } from './components/backoffices/admin/tenant-operators/tenant-operators.module';
 import { TenantOperatorLinkModule } from './components/backoffices/admin/tenant-operator-link/tenant-operator-link.module';
-// import { OperatorsFormModule } from './components/backoffices/admin/operators-form/operators-form.module';
+import { OperatorsFormModule } from './components/backoffices/admin/operators-form/operators-form.module';
+import { OperatorsListModule } from './components/backoffices/admin/operators-list/operators-list.module';
 // import { OperatorsListModule } from './components/backoffices/admin/operators-list/operators-list.module';
+
+import { OperatorDashboardModule } from './components/backoffices/operator/operator-dashboard/operator-dashboard.module';
+import { OperatorTenantsListModule } from './components/backoffices/operator/operator-tenants-list/operator-tenants-list.module';
+import { TenantProfessionalsModule } from './components/backoffices/operator/tenant-professionals/tenant-professionals.module';
+import { ProfessionalCalendarModule } from './components/backoffices/operator/professional-calendar/professional-calendar.module';
+import { TenantProfessionalsListModule } from './components/backoffices/operator/tenant-professionals-list/tenant-professionals-list.module';
+
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { OperatorAuthGuard } from './guards/operator-auth.guard';
 import { ProfessionalAuthGuard } from './guards/professional-auth.guard';
 import { PatientAuthGuard } from './guards/patient-auth.guard';
+
+
 
 
 const routes: Routes = [
@@ -38,11 +48,17 @@ const routes: Routes = [
   { path: 'admin/tenants/:tenantId', canActivate: [AdminAuthGuard], loadChildren: () => TenantsFormModule, data: { showHeader: false, showAdminHeader: true }},
   { path: 'admin/tenants/:tenantId/operators', canActivate: [AdminAuthGuard], loadChildren: () => TenantOperatorsModule, data: { showHeader: false, showAdminHeader: true }},
   { path: 'admin/tenants/:tenantId/operators/link', canActivate: [AdminAuthGuard], loadChildren: () => TenantOperatorLinkModule, data: { showHeader: false, showAdminHeader: true }},
-  // { path: 'admin/operators', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsListModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/operators', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/operators/create', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsListModule, data: { showHeader: false, showAdminHeader: true }},
   // { path: 'admin/operators/:id', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
   
   // Operator routes [ Tenants, Operators ]
-  { path: 'operator/dashboard', canActivate: [OperatorAuthGuard], loadChildren: () => AdminDashboardModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/dashboard', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorDashboardModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/tenants', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorTenantsListModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/tenants/create', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalsListModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/professionals', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalsModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/professional/calendar', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalCalendarModule, data: { showHeader: false, showOperatorHeader: true }},
+  
 
   // Professional routes [ Tenants, Operators ]
   { path: 'professional/dashboard', canActivate: [ProfessionalAuthGuard], loadChildren: () => AdminDashboardModule, data: { showHeader: false, showProfessionalHeader: true }},

@@ -6,11 +6,11 @@ import { UsersService } from '../../../../services/admin/users.service';
 import { OperatorsService } from '../../../../services/admin/operators.service';
 
 @Component({
-  selector: 'app-operators-list',
-  templateUrl: './operators-list.component.html',
-  styleUrls: ['./operators-list.component.css']
+  selector: 'app-tenant-professionals-list',
+  templateUrl: './tenant-professionals-list.component.html',
+  styleUrls: ['./tenant-professionals-list.component.css']
 })
-export class OperatorsListComponent implements OnInit {
+export class TenantProfessionalsListComponent implements OnInit {
 
   isLoaded: boolean = false;
   reason : string | null = null;
@@ -27,35 +27,31 @@ export class OperatorsListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private usersService : UsersService,
     private operatorsService : OperatorsService,
-    ) { }
+  ) { }
 
   async ngOnInit(): Promise<void> {
-      this.reason = this.activatedRoute?.snapshot.params['tenantId'];
-      this.users = await this.listUsers();
-  }
+    this.reason = this.activatedRoute?.snapshot.params['tenantId'];
+    this.users = await this.listUsers();
+}
 
   private async listUsers() {
       const { ok, users } : any = await this.usersService.readUsers();
-  
+
       return users.map( (u:any) => {
         
         const isOperator = u.roles.find((r:any)=> r.id === 2);
-  
+
         isOperator ?
           u.isOperator = true
           :
           u.isOperator = false;
-  
+
         return u;
       });
   }
 
-  // async linkUserToTenantOperators(id: any) {
-  //     await this.operatorsService.createOperator({id});
-  //   }
-  
-    async createUserToOperators(id : any) {
-      await this.operatorsService.createOperator({id});
+  async createUserToOperators(id : any) {
+    await this.operatorsService.createOperator({id});
   }
 
 }

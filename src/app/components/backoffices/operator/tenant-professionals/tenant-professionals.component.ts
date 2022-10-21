@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+//por ahora luego crear servicio operator y buscar professionales
 import { OperatorsService } from 'src/app/services/admin/operators.service';
 
 @Component({
-  selector: 'app-operators-form',
-  templateUrl: './operators-form.component.html',
-  styleUrls: ['./operators-form.component.css']
+  selector: 'app-tenant-professionals',
+  templateUrl: './tenant-professionals.component.html',
+  styleUrls: ['./tenant-professionals.component.css']
 })
-export class OperatorsFormComponent implements OnInit {
+export class TenantProfessionalsComponent implements OnInit {
 
   operators: any[] = [];
+
   constructor(
     private operatrosService : OperatorsService,
   ) { }
@@ -26,6 +30,5 @@ export class OperatorsFormComponent implements OnInit {
     const { operators } = data;
     this.operators = operators;
   }
+
 }
-
-

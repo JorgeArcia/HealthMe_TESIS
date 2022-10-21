@@ -1,46 +1,38 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Formulario de Operadores</h1>
+            <h1>Tenants operators</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8 col-sm-12 text-right">
+            <a class="btn btn-success btn-md" routerLink="/admin/operators/create">Add operator</a>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <form (ngSubmit)="saveOperator()" *ngIf="isLoaded">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="firstName" placeholder="Ingrese Nombre">
-                    <span class="text-danger" *ngIf="form?.get('firstName').status != 'VALID' && form.get('firstName').touched">El Nombre es obligatorio.</span>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="lastName" placeholder="Ingrese Apellido">
-                    <span class="text-danger" *ngIf="form?.get('lastName').status != 'VALID' && form.get('lastName').touched">El Apellido es obligatorio.</span>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                    <input type="tel" class="form-control" aria-describedby="emailHelp" formControlName="phone" placeholder="Ingrese numero de telefono">
-                    <span class="text-danger" *ngIf="form?.get('phone').status != 'VALID' && form.get('phone').touched">El numero de telefono es obligatorio.</span>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" aria-describedby="emailHelp" formControlName="password" placeholder="Ingrese contraseña">
-                    <span class="text-danger" *ngIf="form?.get('password').status != 'VALID' && form.get('password').touched">La Contraseña es obligatoria.</span>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
-                    <input type="password" class="form-control" aria-describedby="emailHelp" formControlName="password2" placeholder="Repetir contraseña">
-                    <span class="text-danger" *ngIf="form?.get('password2').status != 'VALID' && form.get('password2').touched">La Contraseña es obligatoria.</span>
-                </div>
-                <div class="d-flex">
-                    <div class="me-3">
-                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Guardar Operador</button>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-secundary btn-block" routerLink="/admin/operators">Salir</button>
-                    </div>
-                </div>
-            </form>
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let operator of operators">
+                        <th scope="row">{{operator.id}}</th>
+                        <th scope="row">{{operator.name}}</th>
+                        <th scope="row">{{operator.surname}}</th>
+                        <th scope="row">{{operator.email}}</th>
+                        <td>
+                            <button type="button" class="btn btn-info">Unlink</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
