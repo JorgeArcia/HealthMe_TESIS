@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
@@ -28,6 +30,14 @@ export class PanelComponent implements OnInit {
     this.user = user;
     this.setRoutes();
     this.setRoles(user.roles);
+    console.log(user)
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: `Bienvenido al Sistema ${user.name} ${user.surname}`,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   private setRoutes() {

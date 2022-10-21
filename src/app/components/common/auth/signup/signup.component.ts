@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import Swal from 'sweetalert2';
 import { AuthService } from '../../../../services/common/auth.service';
 
 @Component({
@@ -40,9 +41,19 @@ export class SignupComponent implements OnInit {
     const { user } : any = await this.service.signup(this.form.value) || undefined;
 
     if(typeof user !== undefined) {
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `Se completo el registro con exito!`,
+        showConfirmButton: false,
+        timer: 1500
+      })
       
       this.router.navigate(['auth',]).then(()=> {
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1600);
       });
     } else {
       console.log(`Error to create the user.`);
