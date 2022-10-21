@@ -48,8 +48,8 @@ const routes: Routes = [
   { path: 'admin/tenants/:tenantId', canActivate: [AdminAuthGuard], loadChildren: () => TenantsFormModule, data: { showHeader: false, showAdminHeader: true }},
   { path: 'admin/tenants/:tenantId/operators', canActivate: [AdminAuthGuard], loadChildren: () => TenantOperatorsModule, data: { showHeader: false, showAdminHeader: true }},
   { path: 'admin/tenants/:tenantId/operators/link', canActivate: [AdminAuthGuard], loadChildren: () => TenantOperatorLinkModule, data: { showHeader: false, showAdminHeader: true }},
-  { path: 'admin/operators', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
-  { path: 'admin/operators/create', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsListModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/operators', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsListModule, data: { showHeader: false, showAdminHeader: true }},
+  { path: 'admin/operators/create', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
   // { path: 'admin/operators/:id', canActivate: [AdminAuthGuard], loadChildren: () => OperatorsFormModule, data: { showHeader: false, showAdminHeader: true }},
   
   // Operator routes [ Tenants, Operators ]

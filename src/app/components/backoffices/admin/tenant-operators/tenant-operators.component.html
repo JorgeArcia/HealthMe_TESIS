@@ -6,7 +6,7 @@
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-success btn-md" routerLink="/admin/tenants/{{tenant.id}}/operators/link">Add operator</a>
+            <a class="btn btn-success btn-md" routerLink="/admin/tenants/{{reason}}/operators/link">Add operator</a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -22,13 +22,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let operator of tenant.operators">
+                    <tr *ngFor="let operator of operators">
                         <th scope="row">{{operator.id}}</th>
                         <th scope="row">{{operator.name}}</th>
                         <th scope="row">{{operator.surname}}</th>
                         <th scope="row">{{operator.email}}</th>
                         <td>
-                            <button type="button" class="btn btn-info">Unlink</button>
+                            <button type="button" class="btn btn-info" (click)="unlinkTenantOperator(operator.id)">Unlink</button>
                         </td>
                     </tr>
                 </tbody>

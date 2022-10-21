@@ -1,7 +1,7 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Users</h1>
+            <h1>Operators</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
@@ -33,23 +33,17 @@
                         <th scope="col">Name</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
-                        <th scope="col">isOperator</th>
                         <th scope="col">Link</th>
-                        <th scope="col">Create</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users">
-                        <th scope="row">{{user.id}}</th>
-                        <th scope="row">{{user.name}}</th>
-                        <th scope="row">{{user.surname}}</th>
-                        <th scope="row">{{user.email}}</th>
-                        <th scope="row">{{user.isOperator}}</th>
+                    <tr *ngFor="let operator of operators">
+                        <th scope="row">{{operator.id}}</th>
+                        <th scope="row">{{operator.name}}</th>
+                        <th scope="row">{{operator.surname}}</th>
+                        <th scope="row">{{operator.email}}</th>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="linkUserToTenantOperators(user.id)">Link</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-info" (click)="createUserToTenantOperators(user.id)">Create</button>
+                            <button type="button" class="btn btn-info" (click)="linkOperatorToTenantOperators(operator.id)">Link</button>
                         </td>
                     </tr>
                 </tbody>

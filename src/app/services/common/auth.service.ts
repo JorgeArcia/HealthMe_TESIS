@@ -24,4 +24,13 @@ export class AuthService extends BaseService {
     }
   }
 
+  lobby() {
+    try {
+      this.setEndpoint('auth/lobby');
+      return this.get();
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

@@ -60,4 +60,22 @@ export class TenantsService extends BaseService {
     }
   }
 
+  addTenantOperator(obj: any) {
+    try {
+      this.setEndpoint(`admin/tenants/operators/link`);
+      return this.post(obj);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  removeTenantOperator(tenantId:any, operatorId: any) {
+    try {
+      this.setEndpoint(`admin/tenants/${tenantId}/operators/${operatorId}/link`);
+      return this.delete();
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

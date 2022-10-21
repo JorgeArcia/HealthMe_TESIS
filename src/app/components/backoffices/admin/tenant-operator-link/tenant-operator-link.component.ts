@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UsersService } from '../../../../services/admin/users.service';
 import { OperatorsService } from '../../../../services/admin/operators.service';
+import { TenantsService } from '../../../../services/admin/tenants.service';
 
 @Component({
   selector: 'app-tenant-operator-link',
@@ -14,7 +15,7 @@ export class TenantOperatorLinkComponent implements OnInit {
 
   isLoaded: boolean = false;
   reason : string | null = null;
-  users: any = [];
+  operators: any = [];
   form : any;
   formCreate : any = { 
     detail: '', 
@@ -23,40 +24,30 @@ export class TenantOperatorLinkComponent implements OnInit {
     address: '',
   };
   
-
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private usersService : UsersService,
     private operatorsService : OperatorsService,
+    private tenantsService : TenantsService,
   ) { }
 
   async ngOnInit(): Promise<void> {
     this.reason = this.activatedRoute?.snapshot.params['tenantId'];
-    this.users = await this.listUsers();
+    await this.listOperators();
   }
 
-  private async listUsers() {
-    const { ok, users } : any = await this.usersService.readUsers();
+  private async listOperators() {
+    const { ok, operators } : any = await this.operatorsService.readOperators();
+    this.operators = operators;
+  }
 
-    return users.map( (u:any) => {
-      
-      const isOperator = u.roles.find((r:any)=> r.id === 2);
-
-      isOperator ?
-        u.isOperator = true
-        :
-        u.isOperator = false;
-
-      return u;
+  async linkOperatorToTenantOperators(id: any) {
+    const result :any = await this.tenantsService.addTenantOperator({
+      operatorId: id,
+      tenantId: this.reason,
     });
+    this.router.navigate(['admin', 'tenants', `${this.reason}`, 'operators']);
   }
 
-  async linkUserToTenantOperators(id: any) {
-    await this.operatorsService.createOperator({id});
-  }
-
-  async createUserToTenantOperators(id : any) {
-    await this.operatorsService.createOperator({id});
-  }
 
 }

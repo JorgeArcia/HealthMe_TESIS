@@ -1,31 +1,16 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Users</h1>
+            <h1>Operators</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-dark btn-md" routerLink="/admin/operators">Back to tenant operators</a>
+            <a class="btn btn-dark btn-md" routerLink="/admin/operators/create">Add user as operator</a>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <!-- <form [formGroup]="form" *ngIf="isLoaded">
-                <div class="form-group mb-3">
-                    <label for="exampleInputDetail" class="form-label">Detalle</label>
-                    <input type="text" class="form-control" formControlName="detail" placeholder="Detalle">
-                    <span class="text-danger" *ngIf="form?.get('detail').status != 'VALID' && form.get('detail').touched">El detalle es obligatorio.</span>
-                </div>
-                <div class="d-flex">
-                    <div class="me-3">
-                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Guardar Tenant</button>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-warning btn-block" routerLink="/admin/tenants">Quit</button>
-                    </div>
-                </div>
-            </form> -->
             <table class="table text-center">
                 <thead class="thead-dark">
                     <tr>
@@ -33,20 +18,14 @@
                         <th scope="col">Name</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
-                        <th scope="col">isOperator</th>
-                        <th scope="col">Create</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users">
-                        <th scope="row">{{user.id}}</th>
-                        <th scope="row">{{user.name}}</th>
-                        <th scope="row">{{user.surname}}</th>
-                        <th scope="row">{{user.email}}</th>
-                        <th scope="row">{{user.isOperator}}</th>
-                        <td>
-                            <button type="button" class="btn btn-info" (click)="createUserToOperators(user.id)">Create</button>
-                        </td>
+                    <tr *ngFor="let operator of operators">
+                        <th scope="row">{{operator.id}}</th>
+                        <th scope="row">{{operator.name}}</th>
+                        <th scope="row">{{operator.surname}}</th>
+                        <th scope="row">{{operator.email}}</th>
                     </tr>
                 </tbody>
             </table>
