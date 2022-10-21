@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UsersService } from 'src/app/services/admin/users.service';
 import { OperatorsService } from 'src/app/services/admin/operators.service';
 
 @Component({
@@ -8,23 +11,35 @@ import { OperatorsService } from 'src/app/services/admin/operators.service';
 })
 export class OperatorsFormComponent implements OnInit {
 
-  operators: any[] = [];
+  users: any[] = [];
+
   constructor(
-    private operatrosService : OperatorsService,
+    private router: Router,
+    private usersService : UsersService,
+    private operatorsService : OperatorsService,
   ) { }
 
   ngOnInit(): void {
-    this.readOperators();
-    console.log(this.operators)
+    this.readUsers();
   }
 
-  private async readOperators() {
-    const {ok,data}:any = await this.operatrosService.readOperators();
-    if(!ok) {
-      console.log(`Operators not found.`);
-    }
-    const { operators } = data;
-    this.operators = operators;
+  private async readUsers() {
+    const {ok,users}:any = await this.usersService.readUsers();
+    this.users = users.map( (user:any) => {
+      
+      const isOperator = user.roles.find((r:any)=> r.id === 2);
+
+      isOperator ?
+        user.isOperator = true
+        :
+        user.isOperator = false;
+      return user;
+    });
+  }
+
+  async createUserAsOperator(userId:any) {
+    const result:any = await this.operatorsService.createOperator({id:userId});
+    this.router.navigate(['admin', 'operators']);
   }
 }
 

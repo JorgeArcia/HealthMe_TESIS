@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { AuthService } from '../../../../services/common/auth.service';
 
 import Swal from 'sweetalert2';
 
@@ -13,12 +14,13 @@ export class PanelComponent implements OnInit {
 
   private JWT : string | null = localStorage.getItem('JWT')? localStorage.getItem('JWT') : null;
   isLogged : boolean = false;
-  user: any | null = null;
+  user: any = {};
   routes: any[] = [];
   roles: any[]= [];
 
   constructor(
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -26,18 +28,16 @@ export class PanelComponent implements OnInit {
       localStorage.clear();
       this.router.navigate(['home']);
     }
-    const { user } : any = jwt_decode(this.JWT ? this.JWT : '');
-    this.user = user;
+    this.startLobby();
     this.setRoutes();
+  }
+
+  private async startLobby() {
+    const { token, user }:any = await this.authService.lobby();
+    localStorage.setItem('JWT', token);
+    this.user = user;
     this.setRoles(user.roles);
-    console.log(user)
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: `Bienvenido al Sistema ${user.name} ${user.surname}`,
-      showConfirmButton: false,
-      timer: 1500
-    })
+    
   }
 
   private setRoutes() {

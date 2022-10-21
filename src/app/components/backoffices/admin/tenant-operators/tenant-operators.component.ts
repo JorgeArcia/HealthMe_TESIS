@@ -10,16 +10,26 @@ import { TenantsService } from '../../../../services/admin/tenants.service';
 export class TenantOperatorsComponent implements OnInit {
 
   reason : string | null = null;
-  tenant: any = {};
+  operators: any = [];
 
   constructor(
+    private router : Router,
     private activatedRoute: ActivatedRoute,
     private tenantsService : TenantsService,
   ) { }
 
   async ngOnInit(): Promise<void> {
     this.reason = this.activatedRoute?.snapshot.params['tenantId'];
-    const {tenant}: any = await this.tenantsService.readTenantOperators(this.reason);
-    this.tenant = tenant;
+    this.listOperators();
+  }
+
+  private async listOperators() {
+    const {operators}: any = await this.tenantsService.readTenantOperators(this.reason);
+    this.operators = operators;
+  }
+
+  async unlinkTenantOperator(operatorId:any) {
+    const { ok, tenant, operator} : any = await this.tenantsService.removeTenantOperator(this.reason, operatorId);
+    this.listOperators();
   }
 }
