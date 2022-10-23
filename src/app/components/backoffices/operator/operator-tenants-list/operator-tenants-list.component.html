@@ -17,7 +17,8 @@
                         <th scope="col">CUIT</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Habilitado</th>
-                        <th scope="col"></th>
+                        <th scope="col">Professionals</th>
+                        <th scope="col">Options</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,9 @@
                         <th scope="row">{{tenant.cuit}}</th>
                         <th scope="row">{{tenant.address}}</th>
                         <th scope="row">{{tenant.available}}</th>
+                        <td>
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{tenant.id}}/professionals">Professionals</button>
+                        </td>
                         <td>
                             <button class="btn btn-info fa fa-employee" routerLink="">Select</button>
                         </td>

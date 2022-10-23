@@ -21,9 +21,9 @@ export class ProfessionalAuthGuard implements CanActivate {
     if(status.token === null) status.res = false;
     status.token ? status.res = true : status.res = false;
 
-    const user : any = jwt_decode(status.token);
+    const {user} : any = jwt_decode(status.token);
     const professional = user.roles.find( (professional: any) => professional.id === 3 && professional.available === true ) || null;
-    
+
     ( status.token && user &&  professional ) ? 
       status.res = true 
       : 

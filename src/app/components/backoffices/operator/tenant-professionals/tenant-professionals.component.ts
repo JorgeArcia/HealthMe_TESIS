@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-//por ahora luego crear servicio operator y buscar professionales
-import { OperatorsService } from 'src/app/services/admin/operators.service';
+import { TenantsService } from '../../../../services/admin/tenants.service';
 
 @Component({
   selector: 'app-tenant-professionals',
@@ -10,25 +9,28 @@ import { OperatorsService } from 'src/app/services/admin/operators.service';
   styleUrls: ['./tenant-professionals.component.css']
 })
 export class TenantProfessionalsComponent implements OnInit {
-
-  operators: any[] = [];
+  
+  reason : string | null = null;
+  professionals: any[] = [];
 
   constructor(
-    private operatrosService : OperatorsService,
+    private activatedRoute: ActivatedRoute,
+    private tenantsService: TenantsService,
   ) { }
 
   ngOnInit(): void {
-    this.readOperators();
-    console.log(this.operators)
+    this.reason = this.activatedRoute?.snapshot.params['tenantId'];
+    this.readProfessionals();
   }
 
-  private async readOperators() {
-    const {ok,data}:any = await this.operatrosService.readOperators();
-    if(!ok) {
-      console.log(`Operators not found.`);
-    }
-    const { operators } = data;
-    this.operators = operators;
+  private async readProfessionals() {
+    const {professionals}: any = await this.tenantsService.readTenantProfessionals(this.reason);
+    this.professionals = professionals;
+  }
+
+  async unlinkTenantProfessional(professionalId:any) {
+    const result : any = await this.tenantsService.removeTenantProfessional(this.reason, professionalId);
+    this.readProfessionals();
   }
 
 }

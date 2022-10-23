@@ -4,7 +4,7 @@ import { BaseService } from '../base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class OperatorsService extends BaseService{
+export class OperatorsService extends BaseService {
 
   createOperator(obj:any) {
     try {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TenantsService } from '../../../../services/admin/tenants.service';
+import { OperatorTenantsService } from '../../../../services/operator/operator-tenants.service';
 
 @Component({
   selector: 'app-operator-tenants-list',
@@ -12,7 +12,7 @@ export class OperatorTenantsListComponent implements OnInit {
   tenants: any[] = [];
 
   constructor(
-    private tenantsService : TenantsService,
+    private operatorTenantsService : OperatorTenantsService,
   ) { }
 
   ngOnInit(): void {
@@ -20,11 +20,7 @@ export class OperatorTenantsListComponent implements OnInit {
   }
 
   private async readTenants() {
-    const {ok,data}:any = await this.tenantsService.readTenants();
-    if(!ok) {
-      console.log(`Tenants not found.`);
-    }
-    const { tenants } = data;
+    const {tenants}:any = await this.operatorTenantsService.readTenants();
     this.tenants = tenants;
   }
 

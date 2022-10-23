@@ -1,0 +1,38 @@
+<div class="container-fluid mt-5 globalSize">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Professionals</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8 col-sm-12 text-right">
+            <a class="btn btn-dark btn-md" routerLink="/operator/tenants/{{reason}}/professionals">Back to tenant professionals</a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let professional of professionals">
+                        <th scope="row">{{professional.id}}</th>
+                        <th scope="row">{{professional.name}}</th>
+                        <th scope="row">{{professional.surname}}</th>
+                        <th scope="row">{{professional.email}}</th>
+                        <td>
+                            <button type="button" class="btn btn-info" (click)="linkProfessionalToTenantProfessionals(professional.id)">Link</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

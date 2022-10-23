@@ -20,10 +20,6 @@ export class OperatorAuthGuard implements CanActivate {
 
     const {user} : any = jwt_decode(status.token);
     const roles =  user.roles;
-
-    console.log(user);
-    console.log(roles)
-
     
     if(Array.isArray(roles)) {
       const operator = roles.find(operator => operator.id === 2);
@@ -40,8 +36,6 @@ export class OperatorAuthGuard implements CanActivate {
       : 
       status.res = false;
     }
-
-    console.log(status)
 
     return status.res;
   }
