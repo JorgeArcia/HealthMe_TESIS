@@ -25,9 +25,16 @@ import { ProfessionalsFormModule } from './components/backoffices/operator/profe
 import { TenantProfessionalsModule } from './components/backoffices/operator/tenant-professionals/tenant-professionals.module';
 import { TenantProfessionalLinkModule } from './components/backoffices/operator/tenant-professional-link/tenant-professional-link.module';
 import { ProfessionalCalendarModule } from './components/backoffices/operator/professional-calendar/professional-calendar.module';
-import { TenantProfessionalsListModule } from './components/backoffices/operator/tenant-professionals-list/tenant-professionals-list.module';
 
+// Professional imports
+import { ProfessionalDashboardModule } from './components/backoffices/professional/professional-dashboard/professional-dashboard.module';
+import { ProfessionalTenantsListModule } from './components/backoffices/professional/professional-tenants-list/professional-tenants-list.module';
 
+// Patient imports
+import { PatientDashboardModule } from './components/backoffices/patient/patient-dashboard/patient-dashboard.module';
+import { PatientTenantsListModule } from './components/backoffices/patient/patient-tenants-list/patient-tenants-list.module';
+
+// Guards for each role
 import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { OperatorAuthGuard } from './guards/operator-auth.guard';
@@ -35,8 +42,7 @@ import { ProfessionalAuthGuard } from './guards/professional-auth.guard';
 import { PatientAuthGuard } from './guards/patient-auth.guard';
 
 
-
-
+// Routes declaration
 const routes: Routes = [
 
   // Default route
@@ -65,15 +71,16 @@ const routes: Routes = [
   { path: 'operator/tenants/:tenantId/professionals/link', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalLinkModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/professionals', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalsListModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/professionals/create', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalsFormModule, data: { showHeader: false, showOperatorHeader: true }},
-  // { path: 'operator/tenants/create', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalsListModule, data: { showHeader: false, showOperatorHeader: true }},
   // { path: 'operator/professional/calendar', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalCalendarModule, data: { showHeader: false, showOperatorHeader: true }},
   
 
   // Professional routes [ Tenants, Operators ]
-  { path: 'professional/dashboard', canActivate: [ProfessionalAuthGuard], loadChildren: () => AdminDashboardModule, data: { showHeader: false, showProfessionalHeader: true }},
+  { path: 'professional/dashboard', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalDashboardModule, data: { showHeader: false, showProfessionalHeader: true }},
+  { path: 'professional/tenants', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalTenantsListModule, data: { showHeader: false, showProfessionalHeader: true }},
 
   // Patient routes [ Tenants, Operators ]
-  { path: 'patient/dashboard', canActivate: [PatientAuthGuard], loadChildren: () => AdminDashboardModule, data: { showHeader: false, showPatientHeader: true }},
+  { path: 'patient/dashboard', canActivate: [PatientAuthGuard], loadChildren: () => PatientDashboardModule, data: { showHeader: false, showPatientHeader: true }},
+  { path: 'patient/tenants', canActivate: [PatientAuthGuard], loadChildren: () => PatientTenantsListModule, data: { showHeader: false, showPatientHeader: true }},
 
   // Wrong routes
   { path: '**', redirectTo: '/home' }
