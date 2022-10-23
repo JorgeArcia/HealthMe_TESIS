@@ -1,12 +1,12 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Tenants professionals</h1>
+            <h1>Professionals</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-success btn-md" routerLink="/operator/tenants/{{reason}}/professionals/link">Add professional</a>
+            <a class="btn btn-dark btn-md" routerLink="/operator/professionals/create">Add user as professional</a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -18,7 +18,6 @@
                         <th scope="col">Name</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Unlink</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,9 +26,6 @@
                         <th scope="row">{{professional.name}}</th>
                         <th scope="row">{{professional.surname}}</th>
                         <th scope="row">{{professional.email}}</th>
-                        <td>
-                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id)">Unlink</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -78,4 +78,31 @@ export class TenantsService extends BaseService {
     }
   }
 
+  readTenantProfessionals(id: any) {
+    try {
+      this.setEndpoint(`operator/tenants/${id}/professionals`);
+      return this.get();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  addTenantProfessional(obj: any) {
+    try {
+      this.setEndpoint(`operator/tenants/professionals/link`);
+      return this.post(obj);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  removeTenantProfessional(tenantId:any, professionalId: any) {
+    try {
+      this.setEndpoint(`operator/tenants/${tenantId}/professionals/${professionalId}/link`);
+      return this.delete();
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

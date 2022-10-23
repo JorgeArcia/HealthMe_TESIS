@@ -33,9 +33,9 @@ export class OperatorHeaderComponent implements OnInit {
     this.routes = [
       { link: '/auth/panel', detail: 'Lobby' },
       { link: '/operator/dashboard', detail: 'Dashboard' },
+      { link: '/operator/tenants', detail: 'Tenants' },
       { link: '/operator/professionals', detail: 'Professionals' },
       { link: '/operator/professional/calendar', detail: 'Calendar' },
-      { link: '/operator/tenants', detail: 'Tenants' },
     ];
   }
 

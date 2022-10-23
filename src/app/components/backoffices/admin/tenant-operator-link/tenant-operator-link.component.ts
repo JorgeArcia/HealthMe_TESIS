@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { UsersService } from '../../../../services/admin/users.service';
-import { OperatorsService } from '../../../../services/admin/operators.service';
 import { TenantsService } from '../../../../services/admin/tenants.service';
+import { OperatorsService } from '../../../../services/admin/operators.service';
 
 @Component({
   selector: 'app-tenant-operator-link',
@@ -16,13 +14,6 @@ export class TenantOperatorLinkComponent implements OnInit {
   isLoaded: boolean = false;
   reason : string | null = null;
   operators: any = [];
-  form : any;
-  formCreate : any = { 
-    detail: '', 
-    phone: '',
-    cuit: '',
-    address: '',
-  };
   
   constructor(
     private router: Router,
