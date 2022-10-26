@@ -17,9 +17,11 @@
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
                         <a class="nav-link text-white" routerLink="/auth/panel"> Lobby</a>
                     </li>
-                    <li class="nav-item pl-3 pr-3" *ngFor="let s of routesSignin">
-                        <a class="nav-link text-white" [routerLink]="s.link">{{s.detail}}</a>
-                    </li>
+                    <div class="d-flex flex-row" *ngIf="!isLogged">
+                        <li class="nav-item pl-3 pr-3" *ngFor="let s of routesSignin">
+                            <a class="nav-link text-white" [routerLink]="s.link">{{s.detail}}</a>
+                        </li>
+                    </div>
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
                         <a class="nav-link text-white" (click)="logout()">Logout</a>
                     </li>

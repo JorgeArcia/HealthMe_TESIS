@@ -19,6 +19,7 @@
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
                         <th scope="col">Unlink</th>
+                        <th scope="col">Manage Agenda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,9 @@
                         <th scope="row">{{professional.email}}</th>
                         <td>
                             <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id)">Unlink</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/professional/{{professional.id}}/agenda">Manage agenda</button>
                         </td>
                     </tr>
                 </tbody>

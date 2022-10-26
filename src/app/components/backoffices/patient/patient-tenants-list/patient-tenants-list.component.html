@@ -1,1 +1,39 @@
-<p>patient-tenants-list works!</p>
+<div class="container-fluid mt-5 globalSize">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Tenants</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tenant</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">CUIT</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Habilitado</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tenant of tenants">
+                        <th scope="row">{{tenant.id}}</th>
+                        <th scope="row">{{tenant.detail}}</th>
+                        <th scope="row">{{tenant.phone}}</th>
+                        <th scope="row">{{tenant.cuit}}</th>
+                        <th scope="row">{{tenant.address}}</th>
+                        <th scope="row">{{tenant.available}}</th>
+                        <td>
+                            <button class="btn btn-info fa fa-employee" routerLink="">Select</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
