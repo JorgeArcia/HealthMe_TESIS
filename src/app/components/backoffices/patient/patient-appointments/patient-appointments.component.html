@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5 globalSize">
+<!-- <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
             <h1>Tenants</h1>
@@ -42,6 +42,44 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div> -->
+<div class="container-fluid mt-5 globalSize">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Consultorios</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <label>Consultorio</label>
+            <select class="form-control">
+                <option *ngFor="let tenant of tenants" (click)="onSelectTenant(tenant)" >
+                    {{ tenant.detail }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-8 col-sm-12 mt-3" *ngIf="selectedTenant">
+            <label>Especialidad</label>
+            <select class="form-control">
+                <option *ngFor="let tenant of tenants" (click)="onSelectEspecialidad(tenant)">
+                    {{ tenant.detail }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-8 col-sm-12 mt-3" *ngIf="selectedEspecialidad">
+            <label>Professionals</label>
+            <select class="form-control">
+                <option *ngFor="let tenant of tenants" (click)="onSelectEspecialidad(tenant)">
+                    {{ tenant.detail }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-8 col-sm-12 mt-3" *ngIf="selectedEspecialidad">
+            <label>Calendario con fechas a pickear</label>
         </div>
     </div>
 </div>
