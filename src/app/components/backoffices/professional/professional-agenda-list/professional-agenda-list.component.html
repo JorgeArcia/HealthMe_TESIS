@@ -1,0 +1,43 @@
+<div class="container-fluid mt-5 globalSize">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Appointments</h1>
+            <p>Aca tendria que venir los datos de appoinments?? (no agenda)</p>
+            <p>La tabla tendria que ser la de Appointments</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">tenantId</th>
+                        <th scope="col">ProfessionalId</th>
+                        <th scope="col">Habilitado</th>
+                        <th scope="col">Options</th>
+                        <th scope="col">Manage Agenda</th>
+                        <th scope="col">Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let agenda of agendas">
+                        <th scope="row">{{agenda.id}}</th>
+                        <th scope="row">{{agenda.tenantId}}</th>
+                        <th scope="row">{{agenda.professionaId}}</th>
+                        <th scope="row">{{agenda.enable}}</th>
+                        <th scope="row">{{agenda.available}}</th>
+                        <td>
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/professional/{{agenda.professionaId}}/agenda">Manage Agenda</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info fa fa-employee" routerLink="">Select</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/common/auth.service';
 
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -39,8 +39,17 @@ export class SigninComponent implements OnInit {
 
     if(ok) {
       localStorage.setItem('JWT', token);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `Bienvenido al sistema ${user.name} ${user.surname}`,
+        showConfirmButton: false,
+        timer: 1000
+      })
       this.router.navigate(['auth', 'panel']).then(()=> {
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 900);
       });
     } else {
       localStorage.clear();

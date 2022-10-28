@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./professional-calendar.component.css']
 })
 export class ProfessionalCalendarComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {

@@ -87,6 +87,15 @@ export class BaseService {
           }
         })
       }
+      if (error.status === 400) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: `Los datos ingresados coinciden con un usuario ya registrado`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     }
   }
 
