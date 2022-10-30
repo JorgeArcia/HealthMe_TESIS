@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PatientTenantsService } from 'src/app/services/patient/patient-tenants.service';
+import { PatientTenantsService } from '../../../../services/patient/patient-tenants.service';
 @Component({
   selector: 'app-patient-tenants-list',
   templateUrl: './patient-tenants-list.component.html',
@@ -11,15 +11,16 @@ export class PatientTenantsListComponent implements OnInit {
   tenants: any[] = [];
 
   constructor(
-    private PatientTenantsService: PatientTenantsService,
+    private patientTenantsService: PatientTenantsService,
   ) { }
 
   ngOnInit(): void {
-    this.readTenants();
+    this.listPatientTenants();
+    console.log(this.tenants);
   }
 
-  private async readTenants() {
-    const {tenants}:any = await this.PatientTenantsService.readTenants();
+  async listPatientTenants() {
+    const { tenants } : any = await this.patientTenantsService.readAllTenants();
     this.tenants = tenants;
   }
 

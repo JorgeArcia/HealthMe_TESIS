@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-professional-agenda-manage',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfessionalAgendaManageComponent implements OnInit {
 
-  constructor() { }
+  tenantId: any;
+  professionalId: any;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.tenantId = this.activatedRoute?.snapshot.params['tenantId'];
+    this.professionalId = this.activatedRoute?.snapshot.params['professionalId'];
+    console.log(this.tenantId, this.professionalId);
   }
 
 }

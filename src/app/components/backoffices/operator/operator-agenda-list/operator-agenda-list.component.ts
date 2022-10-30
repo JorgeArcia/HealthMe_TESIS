@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OperatorTenantsAgendasService } from 'src/app/services/operator/operator-tenants-agendas.service';
+import { OperatorAgendasService } from '../../../../services/operator/operator-agendas.service';
 
 @Component({
   selector: 'app-operator-agenda-list',
@@ -12,16 +12,18 @@ export class OperatorAgendaListComponent implements OnInit {
   agendas: any[] = [];
 
   constructor(
-    private OperatorTenantsAgendasService: OperatorTenantsAgendasService,
+    private operatorAgendasService: OperatorAgendasService
   ) { }
 
   ngOnInit(): void {
-    this.readAgendas();
+    this.listOperatorAgendas();
   }
 
-  private async readAgendas() {
-    const {agendas}:any = await this.OperatorTenantsAgendasService.readAgendas();
+  async listOperatorAgendas() {
+    const {agendas} :any = await this.operatorAgendasService.readAgendas();
     this.agendas = agendas;
+    console.log(this.agendas);
   }
+
 
 }

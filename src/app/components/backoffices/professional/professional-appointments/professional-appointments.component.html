@@ -6,7 +6,7 @@
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-success btn-md" routerLink="/patient/appointment/new">New appointment</a>
+           
         </div>
     </div>
     <div class="row justify-content-center">
@@ -17,10 +17,10 @@
                         <th scope="col">#</th>
                         <th scope="col">Tenant</th>
                         <th scope="col">Professional</th>
+                        <th scope="col">Patient</th>
                         <th scope="col">From</th>
                         <th scope="col">Until</th>
                         <th scope="col">View</th>
-                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,13 +28,11 @@
                         <th scope="row">{{appt.id}}</th>
                         <th scope="row">{{appt.tenant.detail}}</th>
                         <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
+                        <th scope="row">{{appt.patient.name}} {{appt.patient.surname}}</th>
                         <th scope="row">{{appt.from}}</th>
                         <th scope="row">{{appt.until}}</th>
                         <td>
-                            <button class="btn btn-info" routerLink="/admin/tenants/{{appt.id}}/operators">view</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger fa fa-trash" (click)="deleteAppointment(appt.id)">Eliminar</button>
+                            <button class="btn btn-info" routerLink="/professional/appointments/{{appt.id}}">view</button>
                         </td>
                     </tr>
                 </tbody>
