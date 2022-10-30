@@ -1,47 +1,15 @@
-<div class="container-fluid mt-5 globalSize">
+<div class="container mt-5 customStyles globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Turnos Agendados</h1>
+            <h1>Dashboard</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
+
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <table class="table text-center">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">tenantId</th>
-                        <th scope="col">ProfessionalId</th>
-                        <th scope="col">PatientId</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">fromHour</th>
-                        <th scope="col">untilHour</th>
-                        <th scope="col">createdAt</th>
-                        <th scope="col">updatedAt</th>
-                        <th scope="col">available</th>
-                        <th scope="col">action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let appointment of appointments">
-                        <th scope="row">{{appointment.id}}</th>
-                        <th scope="row">{{appointment.tenantId}}</th>
-                        <th scope="row">{{appointment.professionaId}}</th>
-                        <th scope="row">{{appointment.patientId}}</th>
-                        <th scope="row">{{appointment.date}}</th>
-                        <th scope="row">{{appointment.fromHour}}</th>
-                        <th scope="row">{{appointment.untilHour}}</th>
-                        <th scope="row">{{appointment.createdAt}}</th>
-                        <th scope="row">{{appointment.updatedAt}}</th>
-                        <th scope="row">{{appointment.available}}</th>
-                        <td>
-                            <button class="btn btn-info fa fa-employee" routerLink="">Borrar Turno</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <p>hay que agregar mas cosas aca en el dashboard como esta en el wireframe</p>
         </div>
     </div>
 </div>

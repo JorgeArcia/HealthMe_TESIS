@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
+
 import { BaseService } from '../base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PatientTenantsAppointmentsService extends BaseService{
+export class OperatorAgendasService extends BaseService {
 
-  readAppointments() {
+  readAgendas() {
     try {
-      this.setEndpoint('patient/tenants/appointments');
+      this.setEndpoint('operator/agendas');
       return this.get();
     } catch (error) {
       throw error;
     }
   }
+
 }

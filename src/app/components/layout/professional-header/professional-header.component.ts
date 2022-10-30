@@ -33,9 +33,10 @@ export class ProfessionalHeaderComponent implements OnInit {
     this.routes = [
       { link: '/auth/panel', detail: 'Lobby' },
       { link: '/professional/dashboard', detail: 'Dashboard' },
-      { link: '/professional/agenda', detail: 'Agenda' },
-      { link: '/professional/clinic_history', detail: 'Clinic History'},
       { link: '/professional/tenants', detail: 'Tenants' },
+      { link: '/professional/appointments', detail: 'Appointments' },
+      { link: '/professional/agenda', detail: 'Agenda' },
+      // { link: '/professional/clinic_history', detail: 'Clinic History'},
     ];
   }
 

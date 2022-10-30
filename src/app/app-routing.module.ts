@@ -24,19 +24,22 @@ import { ProfessionalsListModule } from './components/backoffices/operator/profe
 import { ProfessionalsFormModule } from './components/backoffices/operator/professionals-form/professionals-form.module';
 import { TenantProfessionalsModule } from './components/backoffices/operator/tenant-professionals/tenant-professionals.module';
 import { TenantProfessionalLinkModule } from './components/backoffices/operator/tenant-professional-link/tenant-professional-link.module';
-import { ProfessionalCalendarModule } from './components/backoffices/operator/professional-calendar/professional-calendar.module';
 import { OperatorAgendaListModule } from './components/backoffices/operator/operator-agenda-list/operator-agenda-list.module';
 import { OperatorAgendaListManageModule } from './components/backoffices/operator/operator-agenda-list-manage/operator-agenda-list-manage.module';
 import { ProfessionalAgendaManageModule } from './components/backoffices/operator/professional-agenda-manage/professional-agenda-manage.module';
+import { TenantProfessionalSpecialitiesModule } from './components/backoffices/operator/tenant-professional-specialities/tenant-professional-specialities.module';
+import { OperatorAppointmentsModule } from './components/backoffices/operator/operator-appointments/operator-appointments.module';
 
 // Professional imports
 import { ProfessionalDashboardModule } from './components/backoffices/professional/professional-dashboard/professional-dashboard.module';
 import { ProfessionalTenantsListModule } from './components/backoffices/professional/professional-tenants-list/professional-tenants-list.module';
+import { ProfessionalAppointmentsModule } from './components/backoffices/professional/professional-appointments/professional-appointments.module';
 import { ProfessionalAgendaListModule } from './components/backoffices/professional/professional-agenda-list/professional-agenda-list.module';
 import { ProfessionalClinicHistoryModule } from './components/backoffices/professional/professional-clinic-history/professional-clinic-history.module';
 
 // Patient imports
 import { PatientDashboardModule } from './components/backoffices/patient/patient-dashboard/patient-dashboard.module';
+import { PatientAppointmentFormModule } from './components/backoffices/patient/patient-appointment-form/patient-appointment-form.module';
 import { PatientTenantsListModule } from './components/backoffices/patient/patient-tenants-list/patient-tenants-list.module';
 import { PatientAppointmentsModule } from './components/backoffices/patient/patient-appointments/patient-appointments.module';
 import { PatientClinicHistoryModule } from './components/backoffices/patient/patient-clinic-history/patient-clinic-history.module';
@@ -73,28 +76,29 @@ const routes: Routes = [
   // Operator routes [ /Dashboard, /Tenants, /Professionals ]
   { path: 'operator/dashboard', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorDashboardModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/tenants', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorTenantsListModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/appointments', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorAppointmentsModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/tenants/agenda', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorAgendaListModule, data: { showHeader: false, showOperatorHeader: true}},
   { path: 'operator/tenants/agenda/:agendaId/manage', canActivate: [OperatorAuthGuard], loadChildren: () => OperatorAgendaListManageModule, data: { showHeader: false, showOperatorHeader: true }},
-  { path: 'operator/tenants/professional/:professionalId/agenda', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalAgendaManageModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/tenants/:tenantId/professional/:professionalId/agenda', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalAgendaManageModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/tenants/:tenantId/professionals', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalsModule, data: { showHeader: false, showOperatorHeader: true }},
+  { path: 'operator/tenants/:tenantId/professionals/:professionalId/specialities', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalSpecialitiesModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/tenants/:tenantId/professionals/link', canActivate: [OperatorAuthGuard], loadChildren: () => TenantProfessionalLinkModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/professionals', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalsListModule, data: { showHeader: false, showOperatorHeader: true }},
   { path: 'operator/professionals/create', canActivate: [OperatorAuthGuard], loadChildren: () => ProfessionalsFormModule, data: { showHeader: false, showOperatorHeader: true }},
-  
 
   // Professional routes [ Tenants, Operators ]
   { path: 'professional/dashboard', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalDashboardModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/tenants', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalTenantsListModule, data: { showHeader: false, showProfessionalHeader: true }},
+  { path: 'professional/appointments', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalAppointmentsModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/agenda', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalAgendaListModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/clinic_history', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalClinicHistoryModule, data: { showHeader: false, showProfessionalHeader: true }},
   
   // Patient routes [ Tenants, Operators ]
   { path: 'patient/dashboard', canActivate: [PatientAuthGuard], loadChildren: () => PatientDashboardModule, data: { showHeader: false, showPatientHeader: true }},
+  { path: 'patient/appointment/new', canActivate: [PatientAuthGuard], loadChildren: () => PatientAppointmentFormModule, data: { showHeader: false, showPatientHeader: true }},
   { path: 'patient/tenants', canActivate: [PatientAuthGuard], loadChildren: () => PatientTenantsListModule, data: { showHeader: false, showPatientHeader: true }},
   { path: 'patient/appointments', canActivate: [PatientAuthGuard], loadChildren: () => PatientAppointmentsModule, data: { showHeader: false, showPatientHeader: true }},
   { path: 'patient/clinic_history', canActivate: [PatientAuthGuard], loadChildren: () => PatientClinicHistoryModule, data: { showHeader: false, showPatientHeader: true }},
-
-
 
   // Wrong routes
   { path: '**', redirectTo: '/home' }

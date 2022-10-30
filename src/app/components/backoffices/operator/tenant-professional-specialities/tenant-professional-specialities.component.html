@@ -1,0 +1,39 @@
+
+<div class="container-fluid mt-5 globalSize">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <h1>Professional specialities</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8 col-sm-12 text-right">
+            <select class="form-select" (change)="onChangeSpeciality($event)" aria-label="Default select example">
+                <option selected>Select speciality</option>
+                <option *ngFor="let s of specialities" [value]="s.id">
+                    {{s.detail}}
+                </option>
+            </select>
+            <button class="btn btn-success" (click)="addSpeciality()">Add speciality</button>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Speciality</th>
+                        <th scope="col">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ps of professionalSpecialities">
+                        <th scope="row">{{ps.speciality.detail}}</th>
+                        <th scope="row">
+                            <button class="btn btn-info" (click)="removeSpeciality(ps.id)">Remove</button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -18,8 +18,9 @@
                         <th scope="col">Name</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Specialities</th>
+                        <th scope="col">Agenda</th>
                         <th scope="col">Unlink</th>
-                        <th scope="col">Manage Agenda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +29,14 @@
                         <th scope="row">{{professional.name}}</th>
                         <th scope="row">{{professional.surname}}</th>
                         <th scope="row">{{professional.email}}</th>
+                        <th scope="row">
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professionals/{{professional.id}}/specialities">Manage</button>
+                        </th>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id)">Unlink</button>
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professional/{{professional.id}}/agenda">Manage</button>
                         </td>
                         <td>
-                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/professional/{{professional.id}}/agenda">Manage agenda</button>
+                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id)">Unlink</button>
                         </td>
                     </tr>
                 </tbody>
