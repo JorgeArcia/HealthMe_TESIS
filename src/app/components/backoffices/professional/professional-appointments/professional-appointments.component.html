@@ -16,10 +16,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Tenant</th>
-                        <th scope="col">Professional</th>
                         <th scope="col">Patient</th>
                         <th scope="col">From</th>
-                        <th scope="col">Until</th>
                         <th scope="col">View</th>
                     </tr>
                 </thead>
@@ -27,10 +25,8 @@
                     <tr *ngFor="let appt of appointments">
                         <th scope="row">{{appt.id}}</th>
                         <th scope="row">{{appt.tenant.detail}}</th>
-                        <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
                         <th scope="row">{{appt.patient.name}} {{appt.patient.surname}}</th>
-                        <th scope="row">{{appt.from}}</th>
-                        <th scope="row">{{appt.until}}</th>
+                        <th scope="row">{{appt.date}}</th>
                         <td>
                             <button class="btn btn-info" routerLink="/professional/appointments/{{appt.id}}">view</button>
                         </td>

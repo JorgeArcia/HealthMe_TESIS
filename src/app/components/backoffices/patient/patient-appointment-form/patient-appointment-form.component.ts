@@ -26,6 +26,7 @@ export class PatientAppointmentFormComponent implements OnInit {
   specialistId: any;
 
   constructor(
+    private router: Router,
     private patientTenantsService: PatientTenantsService,
     private patientAppointmentsService: PatientAppointmentsService
   ) { }
@@ -117,7 +118,11 @@ export class PatientAppointmentFormComponent implements OnInit {
       date: this.form.value.date,
     }
     const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);
-    console.log(appointment);
+    if(appointment) {
+      this.router.navigate(['patient', 'appointments'])
+    } else {
+      console.log(`Error to create the appointment`);
+    }
   }
 
 }
