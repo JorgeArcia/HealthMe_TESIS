@@ -19,13 +19,22 @@ export class PatientAppointmentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.listPatientAppointments();
+  }
 
+  async listPatientAppointments() {
+    const {appointments}:any = await this.patientAppointmentsService.readAppointments();
+    this.appointments = appointments;
+    console.log(this.appointments);
   }
 
   async deleteAppointment(apptId:any) {
-    console.log(apptId);
     const { ok, appointmentId } = await this.patientAppointmentsService.deleteAppointment(apptId);
-    console.log(ok, appointmentId);
+    if(ok) {
+      this.listPatientAppointments();
+    } else {
+      console.log(`Error to delete the appointment: ${apptId}`);
+    }
   }
 
 
