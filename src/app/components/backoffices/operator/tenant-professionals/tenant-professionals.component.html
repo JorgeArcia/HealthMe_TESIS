@@ -36,7 +36,7 @@
                             <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professional/{{professional.id}}/agenda">Manage</button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id)">Unlink</button>
+                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id,professional.name,professional.surname)">Unlink</button>
                         </td>
                     </tr>
                 </tbody>

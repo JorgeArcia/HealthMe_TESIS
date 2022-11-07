@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessionalsService } from '../../../../services/operator/professionals.service';
 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-tenant-professional-specialities',
   templateUrl: './tenant-professional-specialities.component.html',
@@ -43,7 +44,8 @@ export class TenantProfessionalSpecialitiesComponent implements OnInit {
   }
 
   async addSpeciality() {
-    if(this.selectedSpeciality !== null) {
+    let speciality: string = this.selectedSpeciality
+    if(this.selectedSpeciality !== null && typeof speciality !== "undefined") {
       const {specialist} = await this.professionalsService.addProfessionalSpeciality({
         tenantId: this.tenantId,
         professionalId: this.professionalId,
@@ -64,8 +66,42 @@ export class TenantProfessionalSpecialitiesComponent implements OnInit {
   }
 
   async removeSpeciality(profSpecId:any) {
-    const {specialist} = await this.professionalsService.removeProfessionalSpeciality(profSpecId);
-    await this.listProfessionalSpecialities();
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        const {specialist} = await this.professionalsService.removeProfessionalSpeciality(profSpecId);
+        await this.listProfessionalSpecialities();
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
   }
 
 }

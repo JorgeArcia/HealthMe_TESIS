@@ -1,23 +1,32 @@
-
 <div class="container-fluid mt-5 globalSize">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <p>Paciente: {{ professionalId }}</p>
+            <p>aca faltarian los datos del profesional, para no perder nocion de donde estamos parados</p>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
             <h1>Professional specialities</h1>
         </div>
     </div>
-    <div class="row justify-content-center mb-3">
-        <div class="col-md-8 col-sm-12 text-right">
-            <select class="form-select" (change)="onChangeSpeciality($event)" aria-label="Default select example">
+    <div class="row justify-content-center mb-3 mt-3">
+        <div class="col-md-8 col-sm-12 text-right w-25">
+            <div class="mb-3">
+                <select class="form-select" (change)="onChangeSpeciality($event)" aria-label="Default select example">
                 <option selected>Select speciality</option>
                 <option *ngFor="let s of specialities" [value]="s.id">
                     {{s.detail}}
                 </option>
             </select>
-            <button class="btn btn-success" (click)="addSpeciality()">Add speciality</button>
+            </div>
+            <div>
+                <button class="btn btn-success" (click)="addSpeciality()">Add speciality</button>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 w-25">
             <table class="table text-center">
                 <thead class="thead-dark">
                     <tr>

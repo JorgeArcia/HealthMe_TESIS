@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TenantsService } from '../../../../services/admin/tenants.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tenant-operators',
@@ -28,8 +29,44 @@ export class TenantOperatorsComponent implements OnInit {
     this.operators = operators;
   }
 
-  async unlinkTenantOperator(operatorId:any) {
-    const { ok, tenant, operator} : any = await this.tenantsService.removeTenantOperator(this.reason, operatorId);
-    this.listOperators();
+  async unlinkTenantOperator(operatorId:any,operatorName:any,operatorSurName:any) {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: `Estas seguro que quieres desvincular a ${operatorName} ${operatorSurName}`,
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        const { ok, tenant, operator} : any = await this.tenantsService.removeTenantOperator(this.reason, operatorId);
+        this.listOperators();
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+    // const { ok, tenant, operator} : any = await this.tenantsService.removeTenantOperator(this.reason, operatorId);
+    // this.listOperators();
   }
 }
