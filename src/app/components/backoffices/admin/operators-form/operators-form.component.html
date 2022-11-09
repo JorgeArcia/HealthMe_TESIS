@@ -27,7 +27,7 @@
                         <th scope="row">{{user.email}}</th>
                         <th scope="row">{{user.isOperator}}</th>
                         <td>
-                            <button type="button" class="btn btn-info" *ngIf="!user.isOperator" (click)="createUserAsOperator(user.id)">Create</button>
+                            <button type="button" class="btn btn-info" *ngIf="!user.isOperator" (click)="createUserAsOperator(user.id,user.name,user.surname)">Create</button>
                         </td>
                     </tr>
                 </tbody>

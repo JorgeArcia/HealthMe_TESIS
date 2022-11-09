@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PatientAppointmentsService } from '../../../../services/patient/patient-appointments.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-patient-appointments',

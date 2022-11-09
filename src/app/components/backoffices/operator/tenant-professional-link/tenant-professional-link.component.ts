@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TenantsService } from '../../../../services/admin/tenants.service';
 import { ProfessionalsService } from '../../../../services/operator/professionals.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tenant-professional-link',
@@ -31,11 +32,30 @@ export class TenantProfessionalLinkComponent implements OnInit {
     this.professionals = professionals;
   }
 
-  async linkProfessionalToTenantProfessionals(id: any) {
-    const result :any = await this.tenantsService.addTenantProfessional({
-      professionalId: id,
-      tenantId: this.reason,
-    });
-    this.router.navigate(['operator', 'tenants', `${this.reason}`, 'professionals']);
+  async linkProfessionalToTenantProfessionals(id: any,professionalName:any,professionalSurName:any) {
+
+    Swal.fire({
+      title: `Quieres vincular al tenant al professional ${professionalName} ${professionalSurName}`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Saved!', '', 'success')
+        const result :any = await this.tenantsService.addTenantProfessional({
+          professionalId: id,
+          tenantId: this.reason,
+        });
+        this.router.navigate(['operator', 'tenants', `${this.reason}`, 'professionals']);
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+    // const result :any = await this.tenantsService.addTenantProfessional({
+    //   professionalId: id,
+    //   tenantId: this.reason,
+    // });
+    // this.router.navigate(['operator', 'tenants', `${this.reason}`, 'professionals']);
   }
 }

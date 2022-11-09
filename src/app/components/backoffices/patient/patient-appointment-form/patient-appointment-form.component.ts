@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PatientTenantsService } from '../../../../services/patient/patient-tenants.service';
 import { PatientAppointmentsService } from '../../../../services/patient/patient-appointments.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-patient-appointment-form',
@@ -21,9 +22,11 @@ export class PatientAppointmentFormComponent implements OnInit {
     date: '',
   };
 
+  professional: any;
   tenantId:any;
   specialityId:any;
   specialistId: any;
+  datePick: any;
 
   constructor(
     private router: Router,
@@ -111,18 +114,60 @@ export class PatientAppointmentFormComponent implements OnInit {
     });
   }
 
+  onPickDate() {
+    if (this.form.value.date) {
+      this.datePick = this.form.value.date;
+    }
+  }
+
   async createAppointment() {
     const newAppoint = {
       tenantId: this.tenantId,
       professionalId: this.specialistId,
       date: this.form.value.date,
     }
-    const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);
-    if(appointment) {
-      this.router.navigate(['patient', 'appointments'])
-    } else {
-      console.log(`Error to create the appointment`);
-    }
+
+    this.professional = this.specialists.find((p:any) => newAppoint.professionalId = p.id);
+    console.log(this.professional);
+    Swal.fire({
+      title: 'Quieres confirmar el turno',
+      text: `en el Tenant ${newAppoint.tenantId} con el profesional ${newAppoint.professionalId} fecha y hora: ${newAppoint.date}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+      const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);  
+        if(appointment) {
+          Swal.fire(
+            'Turno registrado!',
+            'Puedes ver tu turno en apartado Appointments',
+            'success'
+          )
+          this.router.navigate(['patient', 'appointments'])
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
+          console.log(`Error to create the appointment`);
+        }
+      }
+    })
+    // const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);
+    // if(appointment) {
+    //   this.router.navigate(['patient', 'appointments'])
+    // } else {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Something went wrong!',
+    //   })
+    //   console.log(`Error to create the appointment`);
+    // }
   }
 
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TenantsService } from '../../../../services/admin/tenants.service';
 import { OperatorsService } from '../../../../services/admin/operators.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tenant-operator-link',
@@ -32,12 +33,30 @@ export class TenantOperatorLinkComponent implements OnInit {
     this.operators = operators;
   }
 
-  async linkOperatorToTenantOperators(id: any) {
-    const result :any = await this.tenantsService.addTenantOperator({
-      operatorId: id,
-      tenantId: this.reason,
-    });
-    this.router.navigate(['admin', 'tenants', `${this.reason}`, 'operators']);
+  async linkOperatorToTenantOperators(id: any,operadorName:any,operatorSurName:any) {
+    Swal.fire({
+      title: `Quieres vincular al tenant al operador ${operadorName} ${operatorSurName}`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Saved!', '', 'success')
+        const result :any = await this.tenantsService.addTenantOperator({
+          operatorId: id,
+          tenantId: this.reason,
+        });
+        this.router.navigate(['admin', 'tenants', `${this.reason}`, 'operators']);
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+    // const result :any = await this.tenantsService.addTenantOperator({
+    //   operatorId: id,
+    //   tenantId: this.reason,
+    // });
+    // this.router.navigate(['admin', 'tenants', `${this.reason}`, 'operators']);
   }
 
 

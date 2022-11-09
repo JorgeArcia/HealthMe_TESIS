@@ -28,7 +28,7 @@
                         <th scope="row">{{operator.surname}}</th>
                         <th scope="row">{{operator.email}}</th>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="linkOperatorToTenantOperators(operator.id)">Link</button>
+                            <button type="button" class="btn btn-info" (click)="linkOperatorToTenantOperators(operator.id,operator.name,operator.surname)">Link</button>
                         </td>
                     </tr>
                 </tbody>
