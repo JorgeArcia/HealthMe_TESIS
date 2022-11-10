@@ -45,7 +45,7 @@ export class ProfessionalAgendaManageComponent implements OnInit {
 
   async switchEnableAgenda(agendaId:any) {
     const result: any = await this.tenantAgendasService.switchEnableAgenda(agendaId);
-    this.listAgendas();
+    this.filterAgenda();
   }
 
   async getDates(agendas:any[]) {
@@ -66,7 +66,6 @@ export class ProfessionalAgendaManageComponent implements OnInit {
       this.listAgendas();
     } else {
       this.filterAgenda();
-      console.log(this.dates);
     }
   }
 
