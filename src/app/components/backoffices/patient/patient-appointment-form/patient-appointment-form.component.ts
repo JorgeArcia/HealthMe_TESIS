@@ -18,6 +18,7 @@ export class PatientAppointmentFormComponent implements OnInit {
   tenants: any = [];
   specialities:any = [];
   specialists:any = [];
+  agendas:any = [];
   formCreate : any = { 
     date: '',
   };
@@ -27,6 +28,7 @@ export class PatientAppointmentFormComponent implements OnInit {
   specialityId:any;
   specialistId: any;
   datePick: any;
+  agendaId:any;
 
   constructor(
     private router: Router,
@@ -63,7 +65,6 @@ export class PatientAppointmentFormComponent implements OnInit {
   async onChangeSpeciality(event:any) {
     if(Number(event.target.value)) {
       this.specialityId = event.target.value;
-      console.log(this.specialityId);
       await this.listTenantProfessionalsBySpeciality();
     } else {
       this.specialityId = null;
@@ -73,8 +74,6 @@ export class PatientAppointmentFormComponent implements OnInit {
   async onChangeProfessional(event:any) {
     if(Number(event.target.value)) {
       this.specialistId = event.target.value;
-      console.log(this.specialistId);
-      //
     } else {
       this.specialistId = null;
     }
@@ -91,7 +90,6 @@ export class PatientAppointmentFormComponent implements OnInit {
     this.specialists = specialists.map((spe:any) => {
       return spe.user;
     });
-    console.log(this.specialists);
   }
 
   filterDuplicatedSpecialities() {
@@ -117,6 +115,7 @@ export class PatientAppointmentFormComponent implements OnInit {
   onPickDate() {
     if (this.form.value.date) {
       this.datePick = this.form.value.date;
+      this.listAgendas();
     }
   }
 
@@ -125,6 +124,7 @@ export class PatientAppointmentFormComponent implements OnInit {
       tenantId: this.tenantId,
       professionalId: this.specialistId,
       date: this.form.value.date,
+      agendaId: this.agendaId,
     }
 
     this.professional = this.specialists.find((p:any) => newAppoint.professionalId = p.id);
@@ -156,18 +156,22 @@ export class PatientAppointmentFormComponent implements OnInit {
           console.log(`Error to create the appointment`);
         }
       }
-    })
-    // const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);
-    // if(appointment) {
-    //   this.router.navigate(['patient', 'appointments'])
-    // } else {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Oops...',
-    //     text: 'Something went wrong!',
-    //   })
-    //   console.log(`Error to create the appointment`);
-    // }
+    });
+  }
+
+  async listAgendas() {
+    const {agendas} : any = await this.patientAppointmentsService.readProfessionalAgendasByTenantAndDate({
+      tenantId: this.tenantId,
+      professionalId: 1,
+    },{
+      date: this.datePick,
+    });
+    this.agendas = agendas;
+    console.log(agendas)
+  }
+
+  async assignAgenda(agendaId: any) {
+    this.agendaId = agendaId;
   }
 
 }

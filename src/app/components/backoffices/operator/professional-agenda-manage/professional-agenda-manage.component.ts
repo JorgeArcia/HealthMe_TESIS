@@ -15,6 +15,8 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   agendas: any = [];
   date:any;
 
+  dates: any = [];
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private tenantAgendasService: OperatorTenantsAgendasService
@@ -44,6 +46,13 @@ export class ProfessionalAgendaManageComponent implements OnInit {
       this.date = this.agendas[this.agendas.length-1]?.date;
     }
     console.log(this.date);
+  }
+
+  async switchEnableAgenda(agendaId:any) {
+    console.log(agendaId);
+    const result: any = await this.tenantAgendasService.switchEnableAgenda(agendaId);
+    console.log(result);
+    this.listAgendas();
   }
 
 }

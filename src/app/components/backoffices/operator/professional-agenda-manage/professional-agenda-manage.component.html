@@ -15,26 +15,23 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Date</th>
                         <th scope="col">Hour</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Scheduled</th>
                         <th scope="col">Enable</th>
                         <th scope="col">Options</th>
-                        <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let agenda of agendas">
                         <th scope="row">{{agenda.id}}</th>
-                        <th scope="row">{{agenda.date | date }}</th>
                         <th scope="row">{{agenda.hour.detail}}</th>
-                        <th scope="row">{{agenda.scheduled}}</th>
-                        <th scope="row">{{agenda.enable}}</th>
+                        <th scope="row">{{agenda.date | date: 'fullDate' }}</th>
+                        <th scope="row">{{agenda.scheduled ? '✅' : '❌'}}</th>
+                        <th scope="row">{{agenda.enable ? '✅' : '❌'}}</th>
                         <td>
-                            <button class="btn btn-info">Enable</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-info">Delete</button>
+                            <button class="btn btn-info" *ngIf="!agenda.enable" (click)="switchEnableAgenda(agenda.id)">Enable</button>
+                            <button class="btn btn-danger" *ngIf="agenda.enable" (click)="switchEnableAgenda(agenda.id)">Unable</button>
                         </td>
                     </tr>
                 </tbody>
