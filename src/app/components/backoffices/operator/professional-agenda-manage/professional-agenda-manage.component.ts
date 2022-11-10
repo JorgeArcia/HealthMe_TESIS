@@ -13,7 +13,7 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   professionalId: any;
 
   agendas: any = [];
-  date:any;
+  date:any = 'selected';
 
   dates: any = [];
   
@@ -25,7 +25,11 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.tenantId = this.activatedRoute?.snapshot.params['tenantId'];
     this.professionalId = this.activatedRoute?.snapshot.params['professionalId'];
-    await this.listAgendas();
+    if(this.date === 'selected') {
+      await this.listAgendas();
+    } else {
+      await this.filterAgenda();
+    }
   }
 
   async generateAgenda(){
@@ -45,7 +49,11 @@ export class ProfessionalAgendaManageComponent implements OnInit {
 
   async switchEnableAgenda(agendaId:any) {
     const result: any = await this.tenantAgendasService.switchEnableAgenda(agendaId);
-    this.filterAgenda();
+    if(this.date === 'selected') {
+      await this.listAgendas();
+    } else {
+      await this.filterAgenda();
+    }
   }
 
   async getDates(agendas:any[]) {
@@ -63,9 +71,9 @@ export class ProfessionalAgendaManageComponent implements OnInit {
     this.date = event.target.value;
     console.log(this.date);
     if(this.date === 'selected') {
-      this.listAgendas();
+      await this.listAgendas();
     } else {
-      this.filterAgenda();
+      await this.filterAgenda();
     }
   }
 
