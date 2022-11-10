@@ -22,7 +22,6 @@ export class OperatorAgendaListComponent implements OnInit {
   async listOperatorAgendas() {
     const {agendas} :any = await this.operatorAgendasService.readAgendas();
     this.agendas = agendas;
-    console.log(this.agendas);
   }
 
 
