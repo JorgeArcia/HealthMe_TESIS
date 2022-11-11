@@ -15,6 +15,15 @@ export class OperatorTenantsAgendasService extends BaseService{
     }
   }
 
+  switchEnableAgenda(agendaId:any) {
+    try {
+      this.setEndpoint(`operator/agendas/status`);
+      return this.post({agendaId});
+    } catch (error) {
+      throw error;
+    }
+  }
+
   readAgendas(tenantId:any, professionalId:any) {
     try {
       this.setEndpoint(`operator/agendas/${tenantId}/${professionalId}`);

@@ -16,6 +16,15 @@ export class PatientAppointmentsService extends BaseService{
     }
   }
 
+  readProfessionalAgendasByTenantAndDate({tenantId, professionalId}:any, {date}:any) {
+    try {
+      this.setEndpoint(`patient/appointments/agendas/${tenantId}/${professionalId}?date=${date}`);
+      return this.get();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   readAppointments() {
     try {
       this.setEndpoint('patient/appointments');

@@ -13,19 +13,23 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   professionalId: any;
 
   agendas: any = [];
-  date:any;
+  date:any = 'selected';
 
+  dates: any = [];
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private tenantAgendasService: OperatorTenantsAgendasService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.tenantId = this.activatedRoute?.snapshot.params['tenantId'];
     this.professionalId = this.activatedRoute?.snapshot.params['professionalId'];
-    this.listAgendas();
-    const now = new Date()
-    console.log(now);
+    if(this.date === 'selected') {
+      await this.listAgendas();
+    } else {
+      await this.filterAgenda();
+    }
   }
 
   async generateAgenda(){
@@ -40,10 +44,42 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   async listAgendas() {
     const {agendas}:any = await this.tenantAgendasService.readAgendas(this.tenantId, this.professionalId);
     this.agendas = agendas;
-    if(this.agendas[this.agendas.length-1]?.date) {
-      this.date = this.agendas[this.agendas.length-1]?.date;
+    this.getDates(agendas);
+  }
+
+  async switchEnableAgenda(agendaId:any) {
+    const result: any = await this.tenantAgendasService.switchEnableAgenda(agendaId);
+    if(this.date === 'selected') {
+      await this.listAgendas();
+    } else {
+      await this.filterAgenda();
     }
+  }
+
+  async getDates(agendas:any[]) {
+    let agendaDates: any = [];
+    for (const ag of agendas) {
+      const exist = agendaDates.find((a:any) => ag.date === a);
+      if(!exist) {
+        agendaDates.push(ag.date);
+      }
+    }
+    this.dates = agendaDates;
+  }
+
+  async onChangeDate(event:any) {
+    this.date = event.target.value;
     console.log(this.date);
+    if(this.date === 'selected') {
+      await this.listAgendas();
+    } else {
+      await this.filterAgenda();
+    }
+  }
+
+  async filterAgenda() {
+    await this.listAgendas();
+    this.agendas = this.agendas.filter((ag:any) => ag.date === this.date);
   }
 
 }

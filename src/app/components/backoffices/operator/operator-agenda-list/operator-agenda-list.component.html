@@ -13,18 +13,22 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Hour</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Tenant</th>
                         <th scope="col">Professional</th>
-                        <th scope="col">Habilitado</th>
+                        <th scope="col">Scheduled</th>
                         <th scope="col">Agenda</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let agenda of agendas">
                         <th scope="row">{{agenda.id}}</th>
+                        <th scope="row">{{agenda.hour.detail}}</th>
+                        <th scope="row">{{agenda.date | date: 'fullDate'}}</th>
                         <th scope="row">{{agenda.tenant.detail}}</th>
                         <th scope="row">{{agenda.professional.name}} {{agenda.professional.surname}}</th>
-                        <th scope="row">{{agenda.enable}}</th>
+                        <th scope="row">{{agenda.scheduled ? '✅' : '❌'}}</th>
                         <td>
                             <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{agenda.tenant.id}}/professional/{{agenda.professional.id}}/agenda">Manage</button>
                         </td>

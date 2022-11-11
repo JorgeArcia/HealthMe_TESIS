@@ -15,24 +15,22 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Hour</th>
                         <th scope="col">Tenant</th>
                         <th scope="col">Professional</th>
                         <th scope="col">Patient</th>
                         <th scope="col">Date</th>
-                        <th scope="col">View</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let appt of appointments">
                         <th scope="row">{{appt.id}}</th>
+                        <th scope="row">{{appt.agenda.hour.detail}}</th>
                         <th scope="row">{{appt.tenant.detail}}</th>
                         <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
                         <th scope="row">{{appt.patient.name}} {{appt.patient.surname}}</th>
-                        <th scope="row">{{appt.date}}</th>
-                        <td>
-                            <button class="btn btn-info" routerLink="/admin/tenants/{{appt.id}}/operators">view</button>
-                        </td>
+                        <th scope="row">{{appt.date | date: 'fullDate' }}</th>
                         <td>
                             <button class="btn btn-danger fa fa-trash" (click)="deleteAppointment(appt.id)">Eliminar</button>
                         </td>

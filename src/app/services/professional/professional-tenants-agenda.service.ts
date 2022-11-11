@@ -8,7 +8,7 @@ export class ProfessionalTenantsAgendaService extends BaseService{
 
   readAgendas() {
     try {
-      this.setEndpoint('professional/tenants/agendas');
+      this.setEndpoint('professional/agendas');
       return this.get();
     } catch (error) {
       throw error;
