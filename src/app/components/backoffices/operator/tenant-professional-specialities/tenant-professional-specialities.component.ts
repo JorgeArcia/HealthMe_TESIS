@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessionalsService } from '../../../../services/operator/professionals.service';
 
+import { TenantsService } from '../../../../services/admin/tenants.service';
+
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-tenant-professional-specialities',
@@ -15,12 +17,15 @@ export class TenantProfessionalSpecialitiesComponent implements OnInit {
 
   specialities: any = [];
   professionalSpecialities: any = []
+  professionals: any[] = [];
 
   selectedSpeciality:any;
+  professionalPick:any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private professionalsService: ProfessionalsService,
+    private tenantsService: TenantsService,
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +33,19 @@ export class TenantProfessionalSpecialitiesComponent implements OnInit {
     this.professionalId = this.activatedRoute?.snapshot.params['professionalId'];
     this.readSpecialities();
     this.listProfessionalSpecialities();
+    this.readProfessionals();
+  }
+
+  private async readProfessionals() {
+    var profId = parseInt(this.professionalId);
+    const {professionals}: any = await this.tenantsService.readTenantProfessionals(this.tenantId);
+    this.professionals = professionals;
+    this.professionals = this.professionals.filter((prof:any) => prof.id === profId);
+    this.professionalPick = {
+      id: this.professionals[0].id,
+      name: this.professionals[0].name,
+      surName: this.professionals[0].surname
+    }
   }
 
   async readSpecialities() {

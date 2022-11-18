@@ -33,7 +33,7 @@ export class PatientHeaderComponent implements OnInit {
     this.routes = [
       { link: '/auth/panel', detail: 'Lobby' },
       { link: '/patient/dashboard', detail: 'Dashboard' },
-      { link: '/patient/tenants', detail: 'Tenants' },
+      // { link: '/patient/tenants', detail: 'Tenants' },
       { link: '/patient/appointments', detail: 'Appointments' },
       //{ link: '/patient/clinic_history', detail: 'Clinic histories' },
     ];

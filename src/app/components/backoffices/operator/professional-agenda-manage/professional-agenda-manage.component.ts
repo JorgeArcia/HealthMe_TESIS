@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OperatorTenantsAgendasService } from '../../../../services/operator/operator-tenants-agendas.service';
 
+import { TenantsService } from '../../../../services/admin/tenants.service';
 @Component({
   selector: 'app-professional-agenda-manage',
   templateUrl: './professional-agenda-manage.component.html',
@@ -11,6 +12,8 @@ export class ProfessionalAgendaManageComponent implements OnInit {
 
   tenantId: any;
   professionalId: any;
+  professionals: any[] = [];
+  professionalPick:any;
 
   agendas: any = [];
   date:any = 'selected';
@@ -19,7 +22,8 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   
   constructor(
     private activatedRoute: ActivatedRoute,
-    private tenantAgendasService: OperatorTenantsAgendasService
+    private tenantAgendasService: OperatorTenantsAgendasService,
+    private tenantsService: TenantsService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -29,6 +33,19 @@ export class ProfessionalAgendaManageComponent implements OnInit {
       await this.listAgendas();
     } else {
       await this.filterAgenda();
+    }
+    this.readProfessionals();
+  }
+
+  private async readProfessionals() {
+    var profId = parseInt(this.professionalId);
+    const {professionals}: any = await this.tenantsService.readTenantProfessionals(this.tenantId);
+    this.professionals = professionals;
+    this.professionals = this.professionals.filter((prof:any) => prof.id === profId);
+    this.professionalPick = {
+      id: this.professionals[0].id,
+      name: this.professionals[0].name,
+      surName: this.professionals[0].surname
     }
   }
 

@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand text-white" href="#">HealthMe</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navBarCustom">
+    <a class="navbar-brand text-white marginLeft" href="#">HealthMe</a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
     <div class="navbar-brand text-white styleNavBar" id="navbarNav">
         <div class="d-flex justify-content-between">
             <div class="mr-auto p-2">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ml-5">
                     <li class="nav-item pl-3 pr-3" *ngFor="let r of routesNavBar">
                         <a class="nav-link text-white" [routerLink]="r.link">{{r.detail}}</a>
                     </li>
@@ -23,7 +23,7 @@
                         </li>
                     </div>
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
-                        <a class="nav-link text-white" (click)="logout()">Logout</a>
+                        <a class="nav-link text-white pressHover" (click)="logout()">Logout</a>
                     </li>
                 </ul>
             </div>

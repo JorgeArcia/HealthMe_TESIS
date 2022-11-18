@@ -1,3 +1,21 @@
 .customStyle {
     width: 1000px;
 }
+
+.btn_hours {
+    color: rgb(58, 71, 250);
+    background-color: #ffffff;
+    border-color: #353535;
+    /*set the color you want here*/
+}
+
+.btn_hours:hover,
+.btn_hours:focus,
+.btn_hours:active,
+.btn_hours.active,
+.open>.dropdown-toggle.btn_hours {
+    color: #fff;
+    background-color: #00b3db;
+    border-color: #285e8e;
+    /*set the color you want here*/
+}

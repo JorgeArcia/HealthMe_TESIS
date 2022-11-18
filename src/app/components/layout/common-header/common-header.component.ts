@@ -28,7 +28,7 @@ export class CommonHeaderComponent implements OnInit {
 
   private setRoutes() {
     this.routesNavBar = [
-      { link: '/home', detail: 'Home' },
+      // { link: '/home', detail: 'Home' },
 
     ];
     this.routesSignin = [
