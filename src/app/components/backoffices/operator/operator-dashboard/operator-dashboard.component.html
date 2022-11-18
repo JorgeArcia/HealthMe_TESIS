@@ -1,6 +1,108 @@
-<div class="globalSize">
-    <h1>Dashboard de operador</h1>
-
-
-    <p>Aca viene lista de turnos para tener un tipo de preview segun los Wireframe </p>
+<div class="container-fluid mt-5 globalSize">
+    <div class="d-flex justify-content-center">
+        <div class="mr-auto p-2">
+            <!-- <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Podras vincular profesionales a consultorios y generar su agenda semanal" routerLink="/operator/tenants/">Vincular Profesionales al tenant/habilitar agendas</button> -->
+            <div class="card cards" style="width: 12rem; height: 18rem;border: 1px rgb(0, 0, 0) solid;">
+                <div class="card-body">
+                    <div class="d-flex align-items-end flex-column" style="height: 17rem;">
+                        <div class="p-2">
+                            <h5 class="card-title">Profesionales y Agendas</h5>
+                        </div>
+                        <div class="p-2">
+                            <p class="card-text">Podras vincular profesionales a consultorios y generar su agenda semanal</p>
+                        </div>
+                        <div class="mt-auto p-2">
+                            <a routerLink="/operator/tenants/" class="btn btn-primary">Ir ...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="align-self-end customStyleBtn"></div>
+        <div class="p-2">
+            <div class="card cards" style="width: 12rem; height: 18rem;border: 1px rgb(0, 0, 0) solid;">
+                <div class="card-body">
+                    <div class="d-flex align-items-end flex-column" style="height: 17rem;">
+                        <div class="p-2">
+                            <h5 class="card-title">Alta Profesionales</h5>
+                        </div>
+                        <div class="p-2">
+                            <p class="card-text">Podras asignarle/quitarle el rol de profesional a usuarios</p>
+                        </div>
+                        <div class="mt-auto p-2">
+                            <a routerLink="/operator/professionals/" class="btn btn-primary">Ir ...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Podras asignarle/quitarle el rol de profesional a usuarios" routerLink="/operator/professionals/">Alta Profesionales</button> -->
+        </div>
+        <div class="p-2">
+            <div class="card cards" style="width: 12rem; height: 18rem;border: 1px rgb(0, 0, 0) solid;">
+                <div class="card-body">
+                    <div class="d-flex align-items-end flex-column" style="height: 17rem;">
+                        <div class="p-2">
+                            <h5 class="card-title">Ver Agendas</h5>
+                        </div>
+                        <div class="p-2">
+                            <p class="card-text">Podras ver las agendas de todos los profesionales y gestionarlas</p>
+                        </div>
+                        <div class="mt-auto p-2">
+                            <a routerLink="/operator/tenants/agenda/" class="btn btn-primary">Ir ...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Podras ver las agendas de todos los profesionales" routerLink="/operator/tenants/agenda/">Ver Agendas</button> -->
+        </div>
+        <div class="p-2">
+            <div class="card cards" style="width: 12rem; height: 18rem;border: 1px rgb(0, 0, 0) solid;">
+                <div class="card-body">
+                    <div class="d-flex align-items-end flex-column" style="height: 17rem;">
+                        <div class="p-2">
+                            <h5 class="card-title">Modificar Turnos</h5>
+                        </div>
+                        <div class="p-2">
+                            <p class="card-text">Podras eliminar turnos agendados e inhabilitarlos</p>
+                        </div>
+                        <div class="mt-auto p-2">
+                            <a routerLink="/operator/appointments/" class="btn btn-primary">Ir ...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Podras eliminar turnos agendados e inhabilitarlos" routerLink="/operator/appointments/">Modificar Turnos</button> -->
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8 col-sm-12">
+            <h1>Appointments</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-8 col-sm-12">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Hour</th>
+                        <th scope="col">Tenant</th>
+                        <th scope="col">Professional</th>
+                        <th scope="col">Patient</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let appt of appointments">
+                        <th scope="row">{{appt.id}}</th>
+                        <th scope="row">{{appt.agenda.hour.detail}}</th>
+                        <th scope="row">{{appt.tenant.detail}}</th>
+                        <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
+                        <th scope="row">{{appt.patient.name}} {{appt.patient.surname}}</th>
+                        <th scope="row">{{appt.date | date: 'fullDate' }}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

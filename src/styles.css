@@ -17,3 +17,26 @@ body {
 .styleNavBar {
     width: 100%;
 }
+
+.marginLeft {
+    margin-left: 1.5rem;
+}
+
+.navBarCustom {
+    height: 4rem;
+}
+
+.pressHover:hover {
+    color: antiquewhite;
+}
+
+.cards {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.cards:hover {
+    box-shadow: 5px 6px 6px 2px #5c5c5c;
+    transform: scale(1.1);
+    border-radius: 1rem;
+}

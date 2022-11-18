@@ -1,11 +1,14 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-12">
-            <p>Paciente: {{ professionalId }}</p>
-            <p>aca faltarian los datos del profesional, para no perder nocion de donde estamos parados</p>
+        <div class="col-md-8 col-sm-12" *ngIf="professionalPick">
+            <blockquote class="blockquote text-center card" style="width: 18rem; height: 10rem;border: 1px rgb(0, 0, 0) solid;margin: 0 auto;">
+                <h3 class="blockquote-footer mt-3">Datos del profesional</h3>
+                <p class="mb-0 mt-3">Profesional id: {{ professionalPick.id }}</p>
+                <p class="mb-0">Profesional: {{ professionalPick.name }} {{ professionalPick.surName }}</p>
+            </blockquote>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
             <h1>Professional specialities</h1>
         </div>

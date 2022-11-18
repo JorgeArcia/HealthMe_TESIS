@@ -6,7 +6,7 @@
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 text-right">
-           
+
         </div>
     </div>
     <div class="row justify-content-center">
@@ -26,7 +26,7 @@
                         <th scope="row">{{appt.id}}</th>
                         <th scope="row">{{appt.tenant.detail}}</th>
                         <th scope="row">{{appt.patient.name}} {{appt.patient.surname}}</th>
-                        <th scope="row">{{appt.date}}</th>
+                        <th scope="row">{{appt.date | date: 'fullDate'}}</th>
                         <td>
                             <button class="btn btn-info" routerLink="/professional/appointments/{{appt.id}}">view</button>
                         </td>

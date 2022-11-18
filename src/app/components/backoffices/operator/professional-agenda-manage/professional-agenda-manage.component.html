@@ -1,18 +1,31 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12" *ngIf="professionalPick">
+            <blockquote class="blockquote text-center card" style="width: 18rem; height: 10rem;border: 1px rgb(0, 0, 0) solid;margin: 0 auto;">
+                <h3 class="blockquote-footer mt-3">Datos del profesional</h3>
+                <p class="mb-0 mt-3">Profesional id: {{ professionalPick.id }}</p>
+                <p class="mb-0">Profesional: {{ professionalPick.name }} {{ professionalPick.surName }}</p>
+            </blockquote>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
             <h1>Professional agenda</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
-        <div class="col-md-8 col-sm-12 d-flex">
-            <button class="btn btn-success" (click)="generateAgenda()">Generate agenda by week</button>
-            <select class="form-select" (change)="onChangeDate($event)" aria-label="Default select example">
+        <div class="col-md-8 col-sm-12 d-flex justify-content-center">
+            <div class="p-2">
+                <button class="btn btn-success" (click)="generateAgenda()">Generate agenda by week</button>
+            </div>
+            <div class="p-2">
+                <select class="form-select" (change)="onChangeDate($event)" aria-label="Default select example">
                 <option value="selected" selected>Open this select menu</option>
                 <option *ngFor="let date of dates" [value]="date">
                     {{ date | date: 'fullDate'}}
                 </option>
             </select>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center">

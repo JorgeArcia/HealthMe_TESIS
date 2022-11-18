@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientAppointmentsService } from '../../../../services/patient/patient-appointments.service';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientDashboardComponent implements OnInit {
 
-  constructor() { }
+  appointments: any[] = [];
+
+  constructor(
+    private patientAppointmentsService:PatientAppointmentsService,
+  ) { }
 
   ngOnInit(): void {
+    this.listPatientAppointments();
+  }
+
+  async listPatientAppointments() {
+    const {appointments}:any = await this.patientAppointmentsService.readAppointments();
+    this.appointments = appointments;
+    console.log(this.appointments);
   }
 
 }

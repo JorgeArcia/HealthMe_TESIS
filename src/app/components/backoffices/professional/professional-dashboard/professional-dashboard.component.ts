@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ProfessionalAppointmentsService } from '../../../../services/professional/professional-appointments.service';
+
+
 @Component({
   selector: 'app-professional-dashboard',
   templateUrl: './professional-dashboard.component.html',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfessionalDashboardComponent implements OnInit {
 
-  constructor() { }
+  appointments:any = [];
+  
+  constructor(
+    private professionalAppointmentsService: ProfessionalAppointmentsService
+  ) { }
 
   ngOnInit(): void {
+    this.listProfessionalAppointments();
   }
 
+  async listProfessionalAppointments() {
+    const {appointments} :any = await this.professionalAppointmentsService.readAppointments();
+    this.appointments = appointments;
+    console.log(this.appointments);
+  }
 }

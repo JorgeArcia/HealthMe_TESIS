@@ -5,4 +5,4 @@
 <app-professional-header *ngIf="showProfessionalHeader"></app-professional-header>
 <app-patient-header *ngIf="showPatientHeader"></app-patient-header>
 <router-outlet></router-outlet>
-<app-common-footer></app-common-footer>
+<app-common-footer *ngIf="showHeader"></app-common-footer>

@@ -15,7 +15,7 @@
  
  .active,
  .collapsible:hover {
-     background-color: #ccc;
+     background-color: rgb(105, 105, 105);
  }
  /* Style the collapsible content. Note: hidden by default */
  
@@ -23,7 +23,7 @@
      padding: 0 18px;
      display: none;
      overflow: hidden;
-     background-color: #f1f1f1;
+     background-color: #6b6b6b;
  }
  
  .customStyle {
@@ -32,4 +32,35 @@
      grid-template-columns: 1fr 1fr;
      gap: 100px;
      min-height: 600px;
+ }
+ 
+ .heading {
+     font-size: 20px;
+     font-weight: 600;
+     color: #4b61e0;
+ }
+ 
+ .line1 {
+     color: #000;
+     font-size: 12px;
+ }
+ 
+ .line2 {
+     color: #000;
+     font-size: 12px;
+ }
+ 
+ .line3 {
+     color: #000;
+     font-size: 12px;
+ }
+ 
+ .cards {
+     transition: all 0.2s ease;
+     cursor: pointer;
+ }
+ 
+ .cards:hover {
+     box-shadow: 5px 6px 6px 2px #5c5c5c;
+     transform: scale(1.1);
  }

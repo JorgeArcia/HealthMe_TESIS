@@ -29,6 +29,7 @@ export class PatientAppointmentFormComponent implements OnInit {
   specialistId: any;
   datePick: any;
   agendaId:any;
+  agendaPick: any;
 
   constructor(
     private router: Router,
@@ -122,16 +123,21 @@ export class PatientAppointmentFormComponent implements OnInit {
   async createAppointment() {
     const newAppoint = {
       tenantId: this.tenantId,
-      professionalId: this.specialistId,
+      professionalId: this.specialists,
       date: this.form.value.date,
       agendaId: this.agendaId,
     }
+    const agendaPick = this.agendaPick;
+    const tenantPick = this.tenants;
 
     this.professional = this.specialists.find((p:any) => newAppoint.professionalId = p.id);
     console.log(this.professional);
     Swal.fire({
       title: 'Quieres confirmar el turno',
-      text: `en el Tenant ${newAppoint.tenantId} con el profesional ${newAppoint.professionalId} fecha y hora: ${newAppoint.date}`,
+      html: `<p>Consultorio ${this.tenantId}</p> 
+      <br> <p>profesional ${this.professional.name} ${this.professional.surname} </p> 
+      <br> <p>fecha: ${newAppoint.date}</p> 
+      <br> <p>hora: ${agendaPick[0].hour.detail}</p> `,
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -162,7 +168,7 @@ export class PatientAppointmentFormComponent implements OnInit {
   async listAgendas() {
     const {agendas} : any = await this.patientAppointmentsService.readProfessionalAgendasByTenantAndDate({
       tenantId: this.tenantId,
-      professionalId: 1,
+      professionalId: this.specialistId,
     },{
       date: this.datePick,
     });
@@ -172,6 +178,7 @@ export class PatientAppointmentFormComponent implements OnInit {
 
   async assignAgenda(agendaId: any) {
     this.agendaId = agendaId;
+    this.agendaPick = this.agendas.filter((p:any) => this.agendaId === p.id);
   }
 
 }
