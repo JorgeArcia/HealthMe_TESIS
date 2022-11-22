@@ -22,6 +22,8 @@ export class PatientAppointmentFormComponent implements OnInit {
   formCreate : any = { 
     date: '',
   };
+  tenantPick:any;
+  specialitytPick:any;
 
   professional: any;
   tenantId:any;
@@ -61,6 +63,7 @@ export class PatientAppointmentFormComponent implements OnInit {
     } else {
       this.tenantId = null;
     }
+    this.tenantPick = this.tenants.filter((tenant: any) => tenant.id === parseInt(this.tenantId));
   }
 
   async onChangeSpeciality(event:any) {
@@ -70,6 +73,7 @@ export class PatientAppointmentFormComponent implements OnInit {
     } else {
       this.specialityId = null;
     }
+    this.specialitytPick = this.specialities.filter((spe:any) => spe.id === parseInt(this.specialityId))
   }
 
   async onChangeProfessional(event:any) {
@@ -128,14 +132,17 @@ export class PatientAppointmentFormComponent implements OnInit {
       agendaId: this.agendaId,
     }
     const agendaPick = this.agendaPick;
-    const tenantPick = this.tenants;
+    const tenantPick = this.tenantPick;
+    const specialityPick = this.specialitytPick;
 
     this.professional = this.specialists.find((p:any) => newAppoint.professionalId = p.id);
     console.log(this.professional);
     Swal.fire({
       title: 'Quieres confirmar el turno',
-      html: `<p>Consultorio ${this.tenantId}</p> 
-      <br> <p>profesional ${this.professional.name} ${this.professional.surname} </p> 
+      html: `<p>Consultorio: ${tenantPick[0].detail}</p> 
+      <br><p>Direccion: ${tenantPick[0].address}</p> 
+      <br> <p>profesional: ${this.professional.name} ${this.professional.surname} </p> 
+      <br><p>Especialidad: ${specialityPick[0].detail}</p> 
       <br> <p>fecha: ${newAppoint.date}</p> 
       <br> <p>hora: ${agendaPick[0].hour.detail}</p> `,
       icon: 'question',

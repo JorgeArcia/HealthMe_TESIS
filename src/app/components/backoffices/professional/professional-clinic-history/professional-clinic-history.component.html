@@ -1,12 +1,15 @@
 <div class="container mt-5 globalSize">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-12">
-            <h1>Historia Clinica</h1>
-            <p>Aca tendria que venir datos del paciente</p>
-            <p>Esta pantalla tendria que venir luego de mostrar la lista de historias clinicas (es maquetado por ahora)</p>
+        <div class="col-md-8 col-sm-12" *ngIf="appointments">
+            <blockquote class="blockquote text-center card" style="width: 18rem; height: 10rem;border: 1px rgb(0, 0, 0) solid;margin: 0 auto;">
+                <h3 class="blockquote-footer mt-3">Datos del paciente</h3>
+                <p class="mb-0 mt-3">Paciente id: {{ appointments[0].patient.id }}</p>
+                <p class="mb-0">Paciente: {{ appointments[0].patient.name }} {{ appointments[0].patient.surname }}</p>
+                <p class="mb-0">Consultorio: {{ appointments[0].tenant.detail }}</p>
+            </blockquote>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
             <form (ngSubmit)="saveCliHistory()" *ngIf="isLoaded">
                 <div class="form-group mb-3">
