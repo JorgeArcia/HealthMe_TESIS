@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfessionalTenantsClinicHistorysService } from 'src/app/services/professional/professional-tenants-clinic-historys.service';
+
+import { ProfessionalAppointmentsService } from '../../../../services/professional/professional-appointments.service';
 @Component({
   selector: 'app-professional-clinic-history',
   templateUrl: './professional-clinic-history.component.html',
@@ -9,7 +11,7 @@ import { ProfessionalTenantsClinicHistorysService } from 'src/app/services/profe
 })
 export class ProfessionalClinicHistoryComponent implements OnInit {
 
-  reason : string | null = null;
+  appointmentId:any;
   isLoaded : boolean = false;
   isNew : boolean = false;
   clinicHistory: any = {};
@@ -19,16 +21,18 @@ export class ProfessionalClinicHistoryComponent implements OnInit {
     medicacion: '',
     observacion: '',
   };
+  appointments:any = [];
 
   constructor(
     private router : Router,
     private activatedRoute: ActivatedRoute,
     private ProfessionalTenantsClinicHistorysService: ProfessionalTenantsClinicHistorysService,
+    private professionalAppointmentsService: ProfessionalAppointmentsService
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.reason = this.activatedRoute?.snapshot.params['Id'];
-    if(this.reason === 'new') {
+    this.appointmentId = this.activatedRoute?.snapshot.params['appointmentId'];
+    if(this.appointmentId !== undefined) {
       this.isNew = true;
       this.createForm(this.formCreate);
     } else {
@@ -36,6 +40,14 @@ export class ProfessionalClinicHistoryComponent implements OnInit {
       // await this.readClinicHistory(this.reason);
       this.createForm(this.clinicHistory);
     }
+    this.listProfessionalAppointments();
+  }
+
+  async listProfessionalAppointments() {
+    const {appointments} :any = await this.professionalAppointmentsService.readAppointments();
+    this.appointments = appointments;
+    this.appointments = this.appointments.filter((appt:any) => appt.id === parseInt(this.appointmentId))
+    
   }
 
   createForm(obj:any) {

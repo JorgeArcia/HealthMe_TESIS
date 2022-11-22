@@ -91,7 +91,7 @@ const routes: Routes = [
   { path: 'professional/tenants', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalTenantsListModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/appointments', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalAppointmentsModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/agenda', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalAgendaListModule, data: { showHeader: false, showProfessionalHeader: true }},
-  { path: 'professional/clinic_history', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalClinicHistoryModule, data: { showHeader: false, showProfessionalHeader: true }},
+  { path: 'professional/appointments/:appointmentId/clinic_history', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalClinicHistoryModule, data: { showHeader: false, showProfessionalHeader: true }},
   
   // Patient routes [ Tenants, Operators ]
   { path: 'patient/dashboard', canActivate: [PatientAuthGuard], loadChildren: () => PatientDashboardModule, data: { showHeader: false, showPatientHeader: true }},

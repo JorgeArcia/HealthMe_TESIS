@@ -27,7 +27,7 @@
                         <th scope="row">{{appt.id}}</th>
                         <th scope="row">{{appt.tenant.detail}}</th>
                         <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
-                        <th scope="row">{{appt.date}}</th>
+                        <th scope="row">{{appt.date | date: 'fullDate'}}</th>
                         <td>
                             <button class="btn btn-info" routerLink="/admin/tenants/{{appt.id}}/operators">view</button>
                         </td>

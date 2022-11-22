@@ -19,6 +19,7 @@
                         <th scope="col">Patient</th>
                         <th scope="col">From</th>
                         <th scope="col">View</th>
+                        <th scope="col">History Clinic</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,9 @@
                         <th scope="row">{{appt.date | date: 'fullDate'}}</th>
                         <td>
                             <button class="btn btn-info" routerLink="/professional/appointments/{{appt.id}}">view</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info" routerLink="/professional/appointments/{{appt.id}}/clinic_history">upload</button>
                         </td>
                     </tr>
                 </tbody>
