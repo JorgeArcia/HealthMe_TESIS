@@ -91,14 +91,14 @@ const routes: Routes = [
   { path: 'professional/tenants', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalTenantsListModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/appointments', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalAppointmentsModule, data: { showHeader: false, showProfessionalHeader: true }},
   { path: 'professional/agenda', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalAgendaListModule, data: { showHeader: false, showProfessionalHeader: true }},
-  { path: 'professional/appointments/:appointmentId/clinic_history', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalClinicHistoryModule, data: { showHeader: false, showProfessionalHeader: true }},
+  { path: 'professional/history/:historyId', canActivate: [ProfessionalAuthGuard], loadChildren: () => ProfessionalClinicHistoryModule, data: { showHeader: false, showProfessionalHeader: true }},
   
   // Patient routes [ Tenants, Operators ]
   { path: 'patient/dashboard', canActivate: [PatientAuthGuard], loadChildren: () => PatientDashboardModule, data: { showHeader: false, showPatientHeader: true }},
   { path: 'patient/appointment/new', canActivate: [PatientAuthGuard], loadChildren: () => PatientAppointmentFormModule, data: { showHeader: false, showPatientHeader: true }},
   { path: 'patient/tenants', canActivate: [PatientAuthGuard], loadChildren: () => PatientTenantsListModule, data: { showHeader: false, showPatientHeader: true }},
   { path: 'patient/appointments', canActivate: [PatientAuthGuard], loadChildren: () => PatientAppointmentsModule, data: { showHeader: false, showPatientHeader: true }},
-  { path: 'patient/clinic_history', canActivate: [PatientAuthGuard], loadChildren: () => PatientClinicHistoryModule, data: { showHeader: false, showPatientHeader: true }},
+  { path: 'patient/history/:historyId', canActivate: [PatientAuthGuard], loadChildren: () => PatientClinicHistoryModule, data: { showHeader: false, showPatientHeader: true }},
 
   // Wrong routes
   { path: '**', redirectTo: '/home' }

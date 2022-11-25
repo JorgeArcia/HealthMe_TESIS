@@ -22,16 +22,16 @@ export class PatientAppointmentFormComponent implements OnInit {
   formCreate : any = { 
     date: '',
   };
-  tenantPick:any;
-  specialitytPick:any;
+  tenantPick:any = null;
+  specialitytPick:any = null;
 
-  professional: any;
-  tenantId:any;
-  specialityId:any;
-  specialistId: any;
-  datePick: any;
-  agendaId:any;
-  agendaPick: any;
+  professional: any = null;
+  tenantId: any = null;
+  specialityId: any = null;
+  specialistId: any = null;
+  datePick: any = null;
+  agendaId:any = null;
+  agendaPick: any = null;
 
   constructor(
     private router: Router,
@@ -77,11 +77,13 @@ export class PatientAppointmentFormComponent implements OnInit {
   }
 
   async onChangeProfessional(event:any) {
-    if(Number(event.target.value)) {
-      this.specialistId = event.target.value;
+    const specialistId = Number(event.target.value);
+    if(specialistId) {
+      this.specialistId = specialistId;
     } else {
       this.specialistId = null;
     }
+    console.log(this.specialistId);
   }
 
   async listTenantSpecialities() {
@@ -127,16 +129,17 @@ export class PatientAppointmentFormComponent implements OnInit {
   async createAppointment() {
     const newAppoint = {
       tenantId: this.tenantId,
-      professionalId: this.specialists,
+      professionalId: this.specialistId,
       date: this.form.value.date,
       agendaId: this.agendaId,
     }
     const agendaPick = this.agendaPick;
     const tenantPick = this.tenantPick;
     const specialityPick = this.specialitytPick;
+    this.professional = this.specialists.find((p:any) => newAppoint.professionalId === p.id);
 
-    this.professional = this.specialists.find((p:any) => newAppoint.professionalId = p.id);
-    console.log(this.professional);
+    console.log(newAppoint.professionalId);
+
     Swal.fire({
       title: 'Quieres confirmar el turno',
       html: `<p>Consultorio: ${tenantPick[0].detail}</p> 
@@ -152,7 +155,8 @@ export class PatientAppointmentFormComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then(async (result) => {
       if (result.isConfirmed) {
-      const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);  
+        console.log(newAppoint.professionalId);
+        const {appointment}:any = await this.patientAppointmentsService.createAppointment(newAppoint);  
         if(appointment) {
           Swal.fire(
             'Turno registrado!',
@@ -170,6 +174,7 @@ export class PatientAppointmentFormComponent implements OnInit {
         }
       }
     });
+
   }
 
   async listAgendas() {

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProfessionalTenantsClinicHistorysService } from 'src/app/services/professional/professional-tenants-clinic-historys.service';
 
+import { ProfessionalTenantsClinicHistorysService } from '../../../../services/professional/professional-tenants-clinic-historys.service';
 import { ProfessionalAppointmentsService } from '../../../../services/professional/professional-appointments.service';
+
 @Component({
   selector: 'app-professional-clinic-history',
   templateUrl: './professional-clinic-history.component.html',
@@ -11,70 +12,59 @@ import { ProfessionalAppointmentsService } from '../../../../services/profession
 })
 export class ProfessionalClinicHistoryComponent implements OnInit {
 
-  appointmentId:any;
+  historyId:any;
   isLoaded : boolean = false;
-  isNew : boolean = false;
-  clinicHistory: any = {};
+  appointment:any = {};
+
   form : any;
   formCreate : any = { 
-    sintomas: '', 
-    medicacion: '',
-    observacion: '',
+    symptoms: '', 
+    medications: '',
+    observations: '',
   };
-  appointments:any = [];
+  
 
   constructor(
-    private router : Router,
     private activatedRoute: ActivatedRoute,
-    private ProfessionalTenantsClinicHistorysService: ProfessionalTenantsClinicHistorysService,
-    private professionalAppointmentsService: ProfessionalAppointmentsService
+    private professionalTenantsClinicHistorysService: ProfessionalTenantsClinicHistorysService,
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.appointmentId = this.activatedRoute?.snapshot.params['appointmentId'];
-    if(this.appointmentId !== undefined) {
-      this.isNew = true;
-      this.createForm(this.formCreate);
-    } else {
-      this.isNew = false;
-      // await this.readClinicHistory(this.reason);
-      this.createForm(this.clinicHistory);
-    }
-    this.listProfessionalAppointments();
-  }
-
-  async listProfessionalAppointments() {
-    const {appointments} :any = await this.professionalAppointmentsService.readAppointments();
-    this.appointments = appointments;
-    this.appointments = this.appointments.filter((appt:any) => appt.id === parseInt(this.appointmentId))
-    
+    this.historyId = this.activatedRoute?.snapshot.params['historyId'];
+    await this.readClinicHistory(this.historyId);
+    console.log(this.appointment);
+    const {history}:any = this.appointment;
+    this.createForm({
+      symptoms: history.symptoms,
+      medications: history.medications,
+      observations: history.observations,
+    });
   }
 
   createForm(obj:any) {
     this.form = new FormGroup({
-      sintomas: new FormControl(obj.sintomas, [ Validators.required]),
-      medicacion: new FormControl(obj.medicacion, [ Validators.required]),
-      observacion: new FormControl(obj.observacion, [ Validators.required]),
+      symptoms: new FormControl(obj.symptoms, [ Validators.required]),
+      medications: new FormControl(obj.medications, [ Validators.required]),
+      observations: new FormControl(obj.observations, [ Validators.required]),
     });
     this.isLoaded = !this.isLoaded;
   }
 
   private async readClinicHistory(id:any) {
-    const {ok, message, data}:any  = await this.ProfessionalTenantsClinicHistorysService.readClinicHistory(id);
+    const {ok, appointment}:any  = await this.professionalTenantsClinicHistorysService.readClinicHistory(id);
     if(!ok) {
-      console.log(`Error to readTenant: ${message}`);
+      console.log(`Error to read historyId: ${id}`);
     }
-    const {clinicHistory} = data;
-    this.clinicHistory = clinicHistory;
+    this.appointment = appointment;
   }
 
   async saveCliHistory() {
-    // if(this.isNew) {
-    //   await this.createTenant();
-    // } else {
-    //   await this.updateTenant();
-    // }
-    // this.router.navigate(['admin', 'tenants']);
+    const history = {
+      id: this.appointment.history.id,
+      ...this.form.value,
+    }
+    console.log(history);
+    const result : any = await this.professionalTenantsClinicHistorysService.updateClinicHistory(history.id, history);
   }
 
 
