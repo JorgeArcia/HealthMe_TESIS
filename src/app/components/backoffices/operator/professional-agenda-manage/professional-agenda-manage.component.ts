@@ -61,6 +61,10 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   async listAgendas() {
     const {agendas}:any = await this.tenantAgendasService.readAgendas(this.tenantId, this.professionalId);
     this.agendas = agendas;
+    const checkAgenda = this.agendas.filter((ag: any) => ag.date === null && ag.hour === null && ag.scheduled === false) 
+    if (checkAgenda.length > 0) {
+      this.agendas.shift();
+    }
     this.getDates(agendas);
   }
 
