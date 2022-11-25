@@ -8,17 +8,17 @@ export class ProfessionalTenantsClinicHistorysService extends BaseService{
 
   readClinicHistory(id: any) {
     try {
-      this.setEndpoint(`patient/tenants/clihistory/${id}`);
+      this.setEndpoint(`professional/histories/${id}`);
       return this.get();
     } catch (error) {
       throw error;
     }
   }
 
-  readClinicsHistorys() {
+  updateClinicHistory(id: any, obj:any) {
     try {
-      this.setEndpoint('professional/tenants/clihistorys');
-      return this.get();
+      this.setEndpoint(`professional/histories/${id}`);
+      return this.put(obj);
     } catch (error) {
       throw error;
     }

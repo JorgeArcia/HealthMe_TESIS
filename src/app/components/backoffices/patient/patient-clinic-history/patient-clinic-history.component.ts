@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PatientTenantsClinicHistorysService } from 'src/app/services/patient/patient-tenants-clinic-historys.service';
+import domToImage from 'dom-to-image';
+import jsPDF from 'jspdf';
+import * as moment from 'moment';
+
+import { PatientTenantsClinicHistorysService } from '../../../../services/patient/patient-tenants-clinic-historys.service';
 
 @Component({
   selector: 'app-patient-clinic-history',
@@ -11,60 +14,65 @@ import { PatientTenantsClinicHistorysService } from 'src/app/services/patient/pa
 export class PatientClinicHistoryComponent implements OnInit {
 
   reason : string | null = null;
-  isLoaded : boolean = false;
-  isNew : boolean = false;
-  clinicHistory: any = {};
-  form : any;
-  formCreate : any = { 
-    sintomas: '', 
-    medicacion: '',
-    observacion: '',
-  };
+  isLoaded: boolean = false;
+  appointment:any;
+
+  @ViewChild('dataToExport', { static: false })
+  public dataToExport!: ElementRef;
 
   constructor(
-    private router : Router,
     private activatedRoute: ActivatedRoute,
     private PatientTenantsClinicHistorysService:PatientTenantsClinicHistorysService,
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.reason = this.activatedRoute?.snapshot.params['Id'];
-    if(this.reason === 'new') {
-      this.isNew = true;
-      this.createForm(this.formCreate);
-    } else {
-      this.isNew = false;
-      // await this.readClinicHistory(this.reason);
-      this.createForm(this.clinicHistory);
-    }
-  }
-
-  createForm(obj:any) {
-    this.form = new FormGroup({
-      sintomas: new FormControl(obj.sintomas, [ Validators.required]),
-      medicacion: new FormControl(obj.medicacion, [ Validators.required]),
-      observacion: new FormControl(obj.observacion, [ Validators.required]),
-    });
+    this.reason = this.activatedRoute?.snapshot.params['historyId'];
+    this.isLoaded = false;
+    await this.readHistory(this.reason);
     this.isLoaded = !this.isLoaded;
+    console.log(this.appointment);
   }
 
-  private async readClinicHistory(id:any) {
-    const {ok, message, data}:any  = await this.PatientTenantsClinicHistorysService.readClinicHistory(id);
+  private async readHistory(id:any) {
+    const {ok,appointment}:any  = await this.PatientTenantsClinicHistorysService.readPatientHistory(this.reason);
     if(!ok) {
-      console.log(`Error to readTenant: ${message}`);
+      console.log(`Error to read historyId: ${this.reason}`);
     }
-    const {clinicHistory} = data;
-    this.clinicHistory = clinicHistory;
+    this.appointment = appointment;
   }
 
-  async saveCliHistory() {
-    // if(this.isNew) {
-    //   await this.createTenant();
-    // } else {
-    //   await this.updateTenant();
-    // }
-    // this.router.navigate(['admin', 'tenants']);
+  async downloadPDF() {
+    const width = this.dataToExport.nativeElement.clientWidth;
+    const height = this.dataToExport.nativeElement.clientHeight + 40;
+    let orientation = '';
+    let imageUnit = 'pt';
+    if (width > height) {
+      orientation = 'l';
+    } else {
+      orientation = 'p';
+    }
+    domToImage.toPng(this.dataToExport.nativeElement, {
+      width: width,
+      height: height
+    }).then(result => {
+      let jsPdfOptions :any = {
+        orientation: orientation,
+        unit: imageUnit,
+        format: [width + 50, height + 220]
+      }
+      const pdf = new jsPDF(jsPdfOptions);
+      const filename = `${this.appointment.patient.name} ${this.appointment.patient.surname} - Clinic history ${moment().format('ll')}`;
+      pdf.setFontSize(48);
+      pdf.setTextColor('#2585fe');
+      pdf.text( filename, 25, 75);
+      pdf.setFontSize(24);
+      pdf.setTextColor('#131523');
+      pdf.text('Report date: ' + moment().format('ll'), 25, 115);
+      pdf.addImage(result, 'PNG', 25, 185, width, height);
+      pdf.save(filename+ '.pdf');
+    });
+      
+    console.log(`Download pdf!`);
   }
-
 
 }

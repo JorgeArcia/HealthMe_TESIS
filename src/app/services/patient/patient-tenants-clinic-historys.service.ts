@@ -6,21 +6,13 @@ import { BaseService } from '../base.service';
 })
 export class PatientTenantsClinicHistorysService extends BaseService{
 
-  readClinicHistory(id: any) {
+  readPatientHistory(id: any) {
     try {
-      this.setEndpoint(`patient/tenants/clihistory/${id}`);
+      this.setEndpoint(`patient/histories/${id}`);
       return this.get();
     } catch (error) {
       throw error;
     }
   }
 
-  readClinicsHistorys() {
-    try {
-      this.setEndpoint('patient/tenants/clihitorys');
-      return this.get();
-    } catch (error) {
-      throw error;
-    }
-  }
 }

@@ -6,30 +6,47 @@
             <p>Queda solo demostrativo</p>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" *ngIf="isLoaded" #dataToExport>
         <div class="col-md-8 col-sm-12">
-            <form (ngSubmit)="saveCliHistory()" *ngIf="isLoaded">
-                <div class="form-group mb-3">
-                    <label for="exampleInputDetail" class="form-label">Sintomas</label>
-                    <textarea type="text" class="form-control" formControlName="sintomas" placeholder="Ingrese los sintomas"></textarea>
-                    <span class="text-danger" *ngIf="form?.get('sintomas').status != 'VALID' && form.get('sintomas').touched">El detalle es obligatorio.</span>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Medicacion</label>
-                    <textarea type="text" class="form-control" formControlName="medicacion" placeholder="Ingrese medicacion"></textarea>
-                    <span class="text-danger" *ngIf="form?.get('medicacion').status != 'VALID' && form.get('medicacion').touched">El telefono es obligatorio.</span>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Observaciones</label>
-                    <textarea type="text" class="form-control" formControlName="observacion" placeholder="Ingrese las Observaciones"></textarea>
-                    <span class="text-danger" *ngIf="form?.get('observacion').status != 'VALID' && form.get('observacion').touched">El telefono es obligatorio.</span>
-                </div>
-                <div class="d-flex">
-                    <div>
-                        <button type="button" class="btn btn-warning btn-block" routerLink="/patient/dashboard">Salir</button>
-                    </div>
-                </div>
-            </form>
+            <hr />
+            <h5>
+                <u>Fecha:</u> 
+                {{appointment.date | date}} {{appointment.agenda.hour.detail}}
+            </h5>
+            <hr />
+            <h5>
+                <u>Professional:</u> 
+                {{appointment.professional.name}} {{appointment.professional.surname}}
+            </h5>
+            <hr />
+            <h5>
+                <u>Tenant:</u> 
+                {{appointment.tenant.detail}}
+            </h5>
+            <hr />
+            <h5><u>History:</u></h5>
+            <ul>
+                <li>
+                    <h6><u>Symptoms:</u></h6>
+                    <p>{{appointment.history.symptoms}}</p>
+                </li>
+                <li>
+                    <h6><u>Medications:</u></h6>
+                    <p>{{appointment.history.medications}}</p>
+                </li>
+                <li>
+                    <h6><u>Observations:</u></h6>
+                    <p>{{appointment.history.observations}}</p>
+                </li>
+            </ul>
+            <hr />
+        </div>
+    </div>
+    <div class="row justify-content-center" *ngIf="isLoaded">
+        <div class="col-md-8 col-sm-12">
+            <button class="btn btn-success" (click)="downloadPDF()">
+                Download History
+            </button>
         </div>
     </div>
 </div>

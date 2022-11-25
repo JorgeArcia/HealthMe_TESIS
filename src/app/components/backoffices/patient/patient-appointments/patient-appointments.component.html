@@ -29,7 +29,7 @@
                         <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
                         <th scope="row">{{appt.date | date: 'fullDate'}}</th>
                         <td>
-                            <button class="btn btn-info" routerLink="/admin/tenants/{{appt.id}}/operators">view</button>
+                            <button class="btn btn-info" routerLink="/patient/history/{{appt.history.id}}">view</button>
                         </td>
                         <td>
                             <button class="btn btn-danger fa fa-trash" (click)="deleteAppointment(appt.id)">Eliminar</button>
