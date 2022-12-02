@@ -41,17 +41,17 @@ export class TenantProfessionalsComponent implements OnInit {
     
     swalWithBootstrapButtons.fire({
       title: `Estas seguro que quieres desvincular a ${professionalName} ${professionalSurName}`,
-      text: "You won't be able to revert this!",
+      text: "No podras revertir los cambios",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Desvincular',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then(async (result) => {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Desvinculado!',
+          'El profesional ha sido desvinculado del consultorio',
           'success'
         )
         const result : any = await this.tenantsService.removeTenantProfessional(this.reason, professionalId);
@@ -60,14 +60,12 @@ export class TenantProfessionalsComponent implements OnInit {
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelado',
+          'No se removio profesional del consultorio',
           'error'
         )
       }
     })
-    // const result : any = await this.tenantsService.removeTenantProfessional(this.reason, professionalId);
-    // this.readProfessionals();
   }
 
 }

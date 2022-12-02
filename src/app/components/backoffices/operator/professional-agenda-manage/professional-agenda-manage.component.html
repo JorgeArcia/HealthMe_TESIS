@@ -10,17 +10,17 @@
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
-            <h1>Professional agenda</h1>
+            <h1>Agenda del profesional</h1>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 col-sm-12 d-flex justify-content-center">
             <div class="p-2">
-                <button class="btn btn-success" (click)="generateAgenda()">Generate agenda by week</button>
+                <button class="btn btn-success" (click)="generateAgenda()" *ngIf="generateAgendaAvaible">Generar agenda por semana</button>
             </div>
             <div class="p-2">
                 <select class="form-select" (change)="onChangeDate($event)" aria-label="Default select example">
-                <option value="selected" selected>Open this select menu</option>
+                <option value="selected" selected>Filtrar por fechas</option>
                 <option *ngFor="let date of dates" [value]="date">
                     {{ date | date: 'fullDate'}}
                 </option>
@@ -30,25 +30,25 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <table class="table text-center">
-                <thead class="thead-dark">
+            <table class="table text-center table-hover">
+                <thead class="table-ligth">
                     <tr>
-                        <th scope="col">Hour</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Scheduled</th>
-                        <th scope="col">Enable</th>
-                        <th scope="col">Options</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Reservado</th>
+                        <th scope="col">Habilitado</th>
+                        <th scope="col">Habilitar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let agenda of agendas">
-                        <th scope="row">{{agenda.hour.detail}}</th>
-                        <th scope="row">{{agenda.date | date: 'fullDate' }}</th>
-                        <th scope="row">{{agenda.scheduled ? '✅' : '❌'}}</th>
-                        <th scope="row">{{agenda.enable ? '✅' : '❌'}}</th>
+                        <th scope="row" class="thCustomStyle">{{agenda.hour.detail}}</th>
+                        <th scope="row" class="thCustomStyle">{{agenda.date | date: 'fullDate' }}</th>
+                        <th scope="row" class="thCustomStyle">{{agenda.scheduled ? '✅' : '❌'}}</th>
+                        <th scope="row" class="thCustomStyle">{{agenda.enable ? '✅' : '❌'}}</th>
                         <td>
-                            <button class="btn btn-info" *ngIf="!agenda.enable" (click)="switchEnableAgenda(agenda.id)">Enable</button>
-                            <button class="btn btn-danger" *ngIf="agenda.enable" (click)="switchEnableAgenda(agenda.id)">Unable</button>
+                            <button class="btn btn-info" *ngIf="!agenda.enable" (click)="switchEnableAgenda(agenda.id)">Habilitar</button>
+                            <button class="btn btn-danger" *ngIf="agenda.enable" (click)="switchEnableAgenda(agenda.id)">Deshabilitar</button>
                         </td>
                     </tr>
                 </tbody>

@@ -1,38 +1,29 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Appointments</h1>
+            <h1>Mis turnos</h1>
         </div>
     </div>
-    <div class="row justify-content-center mb-3">
-        <div class="col-md-8 col-sm-12 text-right">
-
-        </div>
-    </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
-            <table class="table text-center">
-                <thead class="thead-dark">
+            <table class="table text-center table-hover">
+                <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Tenant</th>
-                        <th scope="col">Patient</th>
-                        <th scope="col">From</th>
-                        <th scope="col">View</th>
-                        <th scope="col">History Clinic</th>
+                        <th scope="col">Consultorio</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cargar historia clinica</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let appt of appointments">
-                        <th scope="row">{{appt.id}}</th>
-                        <th scope="row">{{appt.tenant.detail}}</th>
-                        <th scope="row">{{appt.patient.name}} {{appt.patient.surname}}</th>
-                        <th scope="row">{{appt.date | date: 'fullDate'}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.id}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.tenant.detail}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.patient.name}} {{appt.patient.surname}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.date | date: 'fullDate'}}</th>
                         <td>
-                            <button class="btn btn-info" routerLink="/professional/history/{{appt.history.id}}">view</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-info" routerLink="/professional/appointments/{{appt.id}}/clinic_history">upload</button>
+                            <button class="btn btn-info" routerLink="/professional/history/{{appt.history.id}}">Historia clinica</button>
                         </td>
                     </tr>
                 </tbody>

@@ -1,34 +1,34 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Professionals</h1>
+            <h1>Profesionales no vinculados al consultorio</h1>
         </div>
     </div>
-    <div class="row justify-content-center mb-3">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-dark btn-md" routerLink="/operator/tenants/{{reason}}/professionals">Back to tenant professionals</a>
+            <a class="btn btn-dark btn-md" routerLink="/operator/tenants/{{reason}}/professionals">Regresar a profesionales</a>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
-            <table class="table text-center">
-                <thead class="thead-dark">
+            <table class="table text-center table-hover">
+                <thead class="table-ligth">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Link</th>
+                        <th scope="col">Vincular al consultorio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let professional of professionals">
-                        <th scope="row">{{professional.id}}</th>
-                        <th scope="row">{{professional.name}}</th>
-                        <th scope="row">{{professional.surname}}</th>
-                        <th scope="row">{{professional.email}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.id}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.name}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.surname}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.email}}</th>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="linkProfessionalToTenantProfessionals(professional.id,professional.name,professional.surname)">Link</button>
+                            <button type="button" class="btn btn-info" (click)="linkProfessionalToTenantProfessionals(professional.id,professional.name,professional.surname)">Vincular</button>
                         </td>
                     </tr>
                 </tbody>

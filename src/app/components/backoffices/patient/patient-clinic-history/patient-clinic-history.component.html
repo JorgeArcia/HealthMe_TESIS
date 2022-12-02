@@ -2,40 +2,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
             <h1>Historia Clinica</h1>
-            <p>Esto no tendria que ser fomulario solo mostrar los datos en forma de tabla</p>
-            <p>Queda solo demostrativo</p>
         </div>
     </div>
     <div class="row justify-content-center" *ngIf="isLoaded" #dataToExport>
         <div class="col-md-8 col-sm-12">
             <hr />
             <h5>
-                <u>Fecha:</u> 
-                {{appointment.date | date}} {{appointment.agenda.hour.detail}}
+                <u>Fecha:</u> {{appointment.date | date}} <u>Hora:</u> {{appointment.agenda.hour.detail}}
             </h5>
             <hr />
             <h5>
-                <u>Professional:</u> 
-                {{appointment.professional.name}} {{appointment.professional.surname}}
+                <u>Profesional:</u> {{appointment.professional.name}} {{appointment.professional.surname}}
             </h5>
             <hr />
             <h5>
-                <u>Tenant:</u> 
-                {{appointment.tenant.detail}}
+                <u>Consultorio:</u> {{appointment.tenant.detail}}
             </h5>
             <hr />
-            <h5><u>History:</u></h5>
+            <h5><u>Historia clinica:</u></h5>
             <ul>
                 <li>
-                    <h6><u>Symptoms:</u></h6>
+                    <h6><u>Sintomas:</u></h6>
                     <p>{{appointment.history.symptoms}}</p>
                 </li>
                 <li>
-                    <h6><u>Medications:</u></h6>
+                    <h6><u>Medicaion:</u></h6>
                     <p>{{appointment.history.medications}}</p>
                 </li>
                 <li>
-                    <h6><u>Observations:</u></h6>
+                    <h6><u>Observaciones:</u></h6>
                     <p>{{appointment.history.observations}}</p>
                 </li>
             </ul>
@@ -45,7 +40,7 @@
     <div class="row justify-content-center" *ngIf="isLoaded">
         <div class="col-md-8 col-sm-12">
             <button class="btn btn-success" (click)="downloadPDF()">
-                Download History
+                Descargar historia clinica
             </button>
         </div>
     </div>

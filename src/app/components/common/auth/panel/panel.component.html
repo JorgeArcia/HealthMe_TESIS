@@ -6,10 +6,15 @@
     </div>
     <div class="row mt-5">
         <div class="col-md-3" *ngFor="let route of routes">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary form-control btn-block" (click)="linkTo(route.link)">
-                    {{ route.detail }}
+            <div class="card cards" style="width: 20rem; height: 33rem; border: 1px rgb(0, 0, 0) solid; cursor: pointer;" (click)="linkTo(route.link)">
+                <img class="card-img-top" src="{{route.img}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ route.title }}</h5>
+                    <p class="card-text">{{ route.text }}</p>
+                    <button type="button" class="btn btn-primary form-control btn-block">
+                    Seleccionar perfil..
                 </button>
+                </div>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@ export class PatientHeaderComponent implements OnInit {
   isLogged : boolean = false;
   email: string | null = null;
   routes: any;
+  user: any;
 
   constructor(
     private router: Router
@@ -22,6 +23,7 @@ export class PatientHeaderComponent implements OnInit {
     if(this.JWT) {
       const { user } : any = jwt_decode(this.JWT);
       this.email = user.email;
+      this.user = user;
       this.setRoutes();
     } else {
       this.logout();
@@ -31,11 +33,9 @@ export class PatientHeaderComponent implements OnInit {
   setRoutes() {
     this.isLogged = true;
     this.routes = [
-      { link: '/auth/panel', detail: 'Lobby' },
-      { link: '/patient/dashboard', detail: 'Dashboard' },
-      // { link: '/patient/tenants', detail: 'Tenants' },
-      { link: '/patient/appointments', detail: 'Appointments' },
-      //{ link: '/patient/clinic_history', detail: 'Clinic histories' },
+      { link: '/auth/panel', detail: 'Panel' },
+      { link: '/patient/dashboard', detail: 'Inicio' },
+      { link: '/patient/appointments', detail: 'Mis turnos' },
     ];
   }
 

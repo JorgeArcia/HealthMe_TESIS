@@ -13,6 +13,7 @@ export class AdminHeaderComponent implements OnInit {
   isLogged : boolean = false;
   email: string | null = null;
   routes: any;
+  user: any;
 
   constructor(
     private router: Router
@@ -22,6 +23,7 @@ export class AdminHeaderComponent implements OnInit {
     if(this.JWT) {
       const { user } : any = jwt_decode(this.JWT);
       this.email = user.email;
+      this.user = user;
       this.setRoutes();
     } else {
       this.logout();
@@ -31,10 +33,10 @@ export class AdminHeaderComponent implements OnInit {
   setRoutes() {
     this.isLogged = true;
     this.routes = [
-      { link: '/auth/panel', detail: 'Lobby' },
-      { link: '/admin/dashboard', detail: 'Dashboard' },
-      { link: '/admin/tenants', detail: 'Tenants' },
-      { link: '/admin/operators', detail: 'Operators' },
+      { link: '/auth/panel', detail: 'Panel' },
+      { link: '/admin/dashboard', detail: 'Inicio' },
+      { link: '/admin/tenants', detail: 'Consultorios' },
+      { link: '/admin/operators', detail: 'Operadores' },
     ];
   }
 

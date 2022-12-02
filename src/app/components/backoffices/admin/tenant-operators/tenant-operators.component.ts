@@ -41,17 +41,17 @@ export class TenantOperatorsComponent implements OnInit {
     
     swalWithBootstrapButtons.fire({
       title: `Estas seguro que quieres desvincular a ${operatorName} ${operatorSurName}`,
-      text: "You won't be able to revert this!",
+      text: "",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Desvincular',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then(async (result) => {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Desvinculado!',
+          'Operador desvinculado con exito',
           'success'
         )
         const { ok, tenant, operator} : any = await this.tenantsService.removeTenantOperator(this.reason, operatorId);
@@ -60,13 +60,11 @@ export class TenantOperatorsComponent implements OnInit {
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelado',
+          'Se cancelaron los cambios',
           'error'
         )
       }
     })
-    // const { ok, tenant, operator} : any = await this.tenantsService.removeTenantOperator(this.reason, operatorId);
-    // this.listOperators();
   }
 }

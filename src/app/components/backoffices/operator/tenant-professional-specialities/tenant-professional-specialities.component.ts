@@ -63,7 +63,9 @@ export class TenantProfessionalSpecialitiesComponent implements OnInit {
 
   async addSpeciality() {
     let speciality: string = this.selectedSpeciality
-    if(this.selectedSpeciality !== null && typeof speciality !== "undefined") {
+    let check: boolean = this.professionalSpecialities.find((ps:any) => ps.speciality.id === parseInt(speciality))
+
+    if(this.selectedSpeciality !== null && typeof speciality !== "undefined" && !check) {
       const {specialist} = await this.professionalsService.addProfessionalSpeciality({
         tenantId: this.tenantId,
         professionalId: this.professionalId,
@@ -93,29 +95,28 @@ export class TenantProfessionalSpecialitiesComponent implements OnInit {
     })
     
     swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Estas seguro de remover la especialidad?',
+      text: "No podras revertir los cambios",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Borrar',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then(async (result) => {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Especialidad removida!',
+          'La especialidad ha sido removida con exito',
           'success'
         )
         const {specialist} = await this.professionalsService.removeProfessionalSpeciality(profSpecId);
         await this.listProfessionalSpecialities();
       } else if (
-        /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelado',
+          'No se removio especialidad del profesional',
           'error'
         )
       }

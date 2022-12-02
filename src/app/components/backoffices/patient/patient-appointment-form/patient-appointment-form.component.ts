@@ -160,7 +160,7 @@ export class PatientAppointmentFormComponent implements OnInit {
         if(appointment) {
           Swal.fire(
             'Turno registrado!',
-            'Puedes ver tu turno en apartado Appointments',
+            'Puedes ver tu turno en apartado Mis turnos',
             'success'
           )
           this.router.navigate(['patient', 'appointments'])
@@ -168,7 +168,7 @@ export class PatientAppointmentFormComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: 'Error to create the appointment',
           })
           console.log(`Error to create the appointment`);
         }

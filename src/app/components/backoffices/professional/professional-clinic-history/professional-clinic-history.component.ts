@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProfessionalTenantsClinicHistorysService } from '../../../../services/professional/professional-tenants-clinic-historys.service';
 import { ProfessionalAppointmentsService } from '../../../../services/professional/professional-appointments.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-professional-clinic-history',
   templateUrl: './professional-clinic-history.component.html',
@@ -25,6 +25,7 @@ export class ProfessionalClinicHistoryComponent implements OnInit {
   
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private professionalTenantsClinicHistorysService: ProfessionalTenantsClinicHistorysService,
   ) { }
@@ -39,6 +40,11 @@ export class ProfessionalClinicHistoryComponent implements OnInit {
       medications: history.medications,
       observations: history.observations,
     });
+    if (!this.appointment.agenda.enable) {
+      this.form.get('symptoms')?.disable();
+      this.form.get('medications')?.disable();
+      this.form.get('observations')?.disable();
+    }
   }
 
   createForm(obj:any) {
@@ -64,7 +70,29 @@ export class ProfessionalClinicHistoryComponent implements OnInit {
       ...this.form.value,
     }
     console.log(history);
-    const result : any = await this.professionalTenantsClinicHistorysService.updateClinicHistory(history.id, history);
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const result : any = await this.professionalTenantsClinicHistorysService.updateClinicHistory(history.id, history);
+        if (result) {
+          Swal.fire(
+            'Historia Clinica guardada con exito',
+            'Puedes ver el detalle de la historia clinica',
+            'success'
+          )
+          this.router.navigate(['professional', 'appointments'])
+        }
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+    // const result : any = await this.professionalTenantsClinicHistorysService.updateClinicHistory(history.id, history);
   }
 
 

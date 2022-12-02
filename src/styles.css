@@ -40,3 +40,7 @@ body {
     transform: scale(1.1);
     border-radius: 1rem;
 }
+
+.thCustomStyle {
+    font-weight: normal;
+}

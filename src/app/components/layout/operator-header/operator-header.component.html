@@ -1,7 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navBarCustom">
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button> -->
     <div class="navbar-brand text-white styleNavBar" id="navbarNav">
         <div class="d-flex justify-content-between">
             <div class="mr-auto p-2">
@@ -15,10 +12,10 @@
             <div class="p-2">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
-                        <a class="nav-link text-white"> {{email}}</a>
+                        <a class="nav-link text-white">{{user.name}}</a>
                     </li>
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
-                        <a class="nav-link text-white" (click)="logout()"> Logout</a>
+                        <a class="nav-link text-white" (click)="logout()">Cerrar sesion</a>
                     </li>
                 </ul>
             </div>

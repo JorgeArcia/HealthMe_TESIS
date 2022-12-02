@@ -1,10 +1,10 @@
 <div class="container mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Tenant form</h1>
+            <h1>Formulario para consultorios</h1>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8 col-sm-12">
             <form [formGroup]="form" (ngSubmit)="saveTenant()" *ngIf="isLoaded">
                 <div class="form-group mb-3">
@@ -15,12 +15,12 @@
                 <div class="form-group mb-3">
                     <label for="exampleInputEmail1" class="form-label">Telefono</label>
                     <input type="text" class="form-control" formControlName="phone" placeholder="Telefono">
-                    <span class="text-danger" *ngIf="form?.get('phone').status != 'VALID' && form.get('phone').touched">El telefono es obligatorio.</span>
+                    <span class="text-danger" *ngIf="form?.get('phone').status != 'VALID' && form.get('phone').touched">Ingrese un numero telefonico por ejemplo 54 9 0 11 12345678.</span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="exampleInputEmail1" class="form-label">Cuit</label>
                     <input type="text" class="form-control" formControlName="cuit" placeholder="CUIT">
-                    <span class="text-danger" *ngIf="form?.get('phone').status != 'VALID' && form.get('phone').touched">El telefono es obligatorio.</span>
+                    <span class="text-danger" *ngIf="form?.get('cuit').status != 'VALID' && form.get('cuit').touched">Ingrese Cuit xx-xxxxxxxx-x.</span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="exampleInputEmail1" class="form-label">Direccion</label>
@@ -29,10 +29,10 @@
                 </div>
                 <div class="d-flex">
                     <div class="me-3">
-                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Guardar Tenant</button>
+                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Guardar consultorio</button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-warning btn-block" routerLink="/admin/tenants">Quit</button>
+                        <button type="button" class="btn btn-warning btn-block" routerLink="/admin/tenants">Salir</button>
                     </div>
                 </div>
             </form>

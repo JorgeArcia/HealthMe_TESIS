@@ -42,21 +42,16 @@ export class TenantOperatorLinkComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire('Saved!', '', 'success')
+        Swal.fire('Operador asociado al consultorio!', '', 'success')
         const result :any = await this.tenantsService.addTenantOperator({
           operatorId: id,
           tenantId: this.reason,
         });
         this.router.navigate(['admin', 'tenants', `${this.reason}`, 'operators']);
       } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        Swal.fire('No se guardaron los cambios', '', 'info')
       }
     })
-    // const result :any = await this.tenantsService.addTenantOperator({
-    //   operatorId: id,
-    //   tenantId: this.reason,
-    // });
-    // this.router.navigate(['admin', 'tenants', `${this.reason}`, 'operators']);
   }
 
 

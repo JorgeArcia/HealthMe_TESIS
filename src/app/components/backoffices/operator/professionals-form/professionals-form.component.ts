@@ -47,11 +47,11 @@ export class ProfessionalsFormComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire('Saved!', '', 'success')
+        Swal.fire('Rol asignado!', '', 'success')
         const result:any = await this.professionalsService.createProfessional({id:userId});
         this.router.navigate(['operator', 'professionals']);
       } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        Swal.fire('No se efecuaron los cambios', '', 'info')
       }
     })
   }

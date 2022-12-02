@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OperatorTenantsAgendasService } from '../../../../services/operator/operator-tenants-agendas.service';
 
 import { TenantsService } from '../../../../services/admin/tenants.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-professional-agenda-manage',
   templateUrl: './professional-agenda-manage.component.html',
@@ -14,6 +15,7 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   professionalId: any;
   professionals: any[] = [];
   professionalPick:any;
+  generateAgendaAvaible: any = true;
 
   agendas: any = [];
   date:any = 'selected';
@@ -50,12 +52,33 @@ export class ProfessionalAgendaManageComponent implements OnInit {
   }
 
   async generateAgenda(){
-    const professionalAgenda = {
-      tenantId: this.tenantId,
-      professionalId: this.professionalId,
+    if (this.agendas.length > 0) {
+      var lastDate = new Date(this.agendas[this.agendas.length - 1].date);
+      var currentDate = new Date();
+      if ((currentDate.getMonth() + 1) < (lastDate.getMonth() +1)) {
+        if (currentDate.getDate() > lastDate.getDate()) {
+          Swal.fire('Este profesional tiene una agenda habilitada para los proximos dias')
+        }
+      }if ((currentDate.getMonth() + 1) === (lastDate.getMonth()+1)) {
+        if (currentDate.getDate() < lastDate.getDate()) {
+          Swal.fire('Este profesional tiene una agenda habilitada para los proximos dias')
+        }
+      } 
+    } else {
+      const professionalAgenda = {
+        tenantId: this.tenantId,
+        professionalId: this.professionalId,
+      }
+      const result :any= await this.tenantAgendasService.generateAgenda(professionalAgenda);
+      this.listAgendas();
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agenda generada con exito',
+        showConfirmButton: false,
+        timer: 1000
+      })
     }
-    const result :any= await this.tenantAgendasService.generateAgenda(professionalAgenda);
-    this.listAgendas();
   }
 
   async listAgendas() {

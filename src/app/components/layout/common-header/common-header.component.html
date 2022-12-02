@@ -15,7 +15,7 @@
             <div class="p-2">
                 <ul class="navbar-nav">
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
-                        <a class="nav-link text-white" routerLink="/auth/panel"> Lobby</a>
+                        <a class="nav-link text-white" routerLink="/auth/panel">Panel</a>
                     </li>
                     <div class="d-flex flex-row" *ngIf="!isLogged">
                         <li class="nav-item pl-3 pr-3" *ngFor="let s of routesSignin">
@@ -23,7 +23,7 @@
                         </li>
                     </div>
                     <li class="nav-item pl-3 pr-3" *ngIf="isLogged">
-                        <a class="nav-link text-white pressHover" (click)="logout()">Logout</a>
+                        <a class="nav-link text-white pressHover" (click)="logout()">Cerrar sesion</a>
                     </li>
                 </ul>
             </div>

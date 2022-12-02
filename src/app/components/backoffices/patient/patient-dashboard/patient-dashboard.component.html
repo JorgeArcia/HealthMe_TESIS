@@ -18,31 +18,31 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8 col-sm-12">
-            <h1>Appointments</h1>
+            <h1>Mis turnos agendados</h1>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8 col-sm-12">
-            <table class="table text-center">
-                <thead class="thead-dark">
+            <table class="table text-center table-hover">
+                <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Tenant</th>
-                        <th scope="col">Professional</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">View</th>
+                        <th scope="col">Consultorio</th>
+                        <th scope="col">Profesional</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Historia clinica</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let appt of appointments">
-                        <th scope="row">{{appt.id}}</th>
-                        <th scope="row">{{appt.tenant.detail}}</th>
-                        <th scope="row">{{appt.professional.name}} {{appt.professional.surname}}</th>
-                        <th scope="row">{{appt.date | date: 'fullDate'}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.id}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.tenant.detail}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.professional.name}} {{appt.professional.surname}}</th>
+                        <th scope="row" class="thCustomStyle">{{appt.date | date: 'fullDate'}}</th>
                         <td>
-                            <button class="btn btn-info" routerLink="/admin/tenants/{{appt.id}}/operators">view</button>
+                            <button class="btn btn-info" routerLink="/patient/history/{{appt.history.id}}/">Ver historia clinica</button>
                         </td>
                     </tr>
                 </tbody>

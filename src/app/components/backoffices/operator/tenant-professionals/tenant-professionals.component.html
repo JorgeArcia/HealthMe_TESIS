@@ -1,42 +1,42 @@
 <div class="container-fluid mt-5 globalSize">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
-            <h1>Tenants professionals</h1>
+            <h1>Profesionales en consultorio</h1>
         </div>
     </div>
-    <div class="row justify-content-center mb-3">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8 col-sm-12 text-right">
-            <a class="btn btn-success btn-md" routerLink="/operator/tenants/{{reason}}/professionals/link">Add professional</a>
+            <a class="btn btn-success btn-md" routerLink="/operator/tenants/{{reason}}/professionals/link">Vincular profesionales al consultorio</a>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12">
             <table class="table text-center">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Specialities</th>
-                        <th scope="col">Agenda</th>
-                        <th scope="col">Unlink</th>
+                        <th scope="col">Añadir especialidad</th>
+                        <th scope="col">Gestionar Agenda</th>
+                        <th scope="col">Desvincular del consultorio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let professional of professionals">
-                        <th scope="row">{{professional.id}}</th>
-                        <th scope="row">{{professional.name}}</th>
-                        <th scope="row">{{professional.surname}}</th>
-                        <th scope="row">{{professional.email}}</th>
-                        <th scope="row">
-                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professionals/{{professional.id}}/specialities">Manage</button>
+                        <th scope="row" class="thCustomStyle">{{professional.id}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.name}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.surname}}</th>
+                        <th scope="row" class="thCustomStyle">{{professional.email}}</th>
+                        <th scope="row" class="thCustomStyle">
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professionals/{{professional.id}}/specialities">Especialidad</button>
                         </th>
                         <td>
-                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professional/{{professional.id}}/agenda">Manage</button>
+                            <button class="btn btn-info fa fa-employee" routerLink="/operator/tenants/{{reason}}/professional/{{professional.id}}/agenda">Agenda</button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id,professional.name,professional.surname)">Unlink</button>
+                            <button type="button" class="btn btn-info" (click)="unlinkTenantProfessional(professional.id,professional.name,professional.surname)">Desvincular</button>
                         </td>
                     </tr>
                 </tbody>

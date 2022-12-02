@@ -47,11 +47,11 @@ export class OperatorsFormComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire('Saved!', '', 'success')
+        Swal.fire('Rol asignado!', '', 'success')
         const result:any = await this.operatorsService.createOperator({id:userId});
         this.router.navigate(['admin', 'operators']);
       } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        Swal.fire('No se guardaron los cambios', '', 'info')
       }
     })
   }

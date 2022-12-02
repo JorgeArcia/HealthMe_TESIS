@@ -14,7 +14,6 @@
                                     <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="Email">
                                     <label for="floatingInput">Email address</label>
                                     <span class="text-white font-weight-bold mt-1 " [ngClass]="form.get('email').status != 'VALID' && form.get('email').touched ? 'visible' : 'invisible' ">Email invalido</span>
-                                    <!-- <span class="text-danger" *ngIf="form.get('email').status != 'VALID' && form.get('email').touched" >Email invalido</span> -->
                                 </div>
 
                                 <div class="form-floating mb-3">

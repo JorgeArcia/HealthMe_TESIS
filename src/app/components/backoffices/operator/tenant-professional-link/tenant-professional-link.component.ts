@@ -42,20 +42,15 @@ export class TenantProfessionalLinkComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire('Saved!', '', 'success')
+        Swal.fire('Vinculado!', '', 'success')
         const result :any = await this.tenantsService.addTenantProfessional({
           professionalId: id,
           tenantId: this.reason,
         });
         this.router.navigate(['operator', 'tenants', `${this.reason}`, 'professionals']);
       } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        Swal.fire('No se hicieron los cambios', '', 'info')
       }
     })
-    // const result :any = await this.tenantsService.addTenantProfessional({
-    //   professionalId: id,
-    //   tenantId: this.reason,
-    // });
-    // this.router.navigate(['operator', 'tenants', `${this.reason}`, 'professionals']);
   }
 }

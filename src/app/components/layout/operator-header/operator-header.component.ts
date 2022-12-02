@@ -13,6 +13,7 @@ export class OperatorHeaderComponent implements OnInit {
   isLogged : boolean = false;
   email: string | null = null;
   routes: any;
+  user: any;
 
   constructor(
     private router: Router
@@ -22,6 +23,7 @@ export class OperatorHeaderComponent implements OnInit {
     if(this.JWT) {
       const { user } : any = jwt_decode(this.JWT);
       this.email = user.email;
+      this.user = user;
       this.setRoutes();
     } else {
       this.logout();
@@ -31,12 +33,12 @@ export class OperatorHeaderComponent implements OnInit {
   setRoutes() {
     this.isLogged = true;
     this.routes = [
-      { link: '/auth/panel', detail: 'Lobby' },
-      { link: '/operator/dashboard', detail: 'Dashboard' },
-      { link: '/operator/tenants', detail: 'Tenants' },
-      { link: '/operator/professionals', detail: 'Professionals' },
+      { link: '/auth/panel', detail: 'Panel' },
+      { link: '/operator/dashboard', detail: 'Inicio' },
+      { link: '/operator/tenants', detail: 'Consultorios' },
+      { link: '/operator/professionals', detail: 'Profesionales' },
       { link: '/operator/tenants/agenda', detail: 'Agendas' },
-      { link: '/operator/appointments', detail: 'Appointments' },
+      { link: '/operator/appointments', detail: 'Turnos' },
     ];
   }
 

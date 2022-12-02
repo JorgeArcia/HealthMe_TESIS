@@ -14,7 +14,7 @@ export class SigninComponent implements OnInit {
   form: FormGroup | any;
   isLoaded : boolean = false;
   signinForm = {
-    email: new FormControl('', [ Validators.email, Validators.required ]),
+    email: new FormControl('', [Validators.pattern(/[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/), Validators.required ]),
     password: new FormControl('', [ Validators.required ]),
   }
 

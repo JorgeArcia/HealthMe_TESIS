@@ -3,6 +3,8 @@
         <div class="col-md-8 col-sm-12">
             <blockquote class="blockquote text-center card" style="width: 18rem; height: 10rem;border: 1px rgb(0, 0, 0) solid;margin: 0 auto;">
                 <h3 class="blockquote-footer mt-3">Datos del paciente</h3>
+                <p class="mb-0 mt-3">Paciente id: {{ appointment.patient.id }}</p>
+                <p class="mb-0">Paciente: {{ appointment.patient.name }} {{ appointment.patient.surname }}</p>
             </blockquote>
         </div>
     </div>
@@ -11,7 +13,7 @@
             <form [formGroup]="form" (ngSubmit)="saveCliHistory()" *ngIf="isLoaded">
                 <div class="form-group mb-3">
                     <label for="exampleInputDetail" class="form-label">Sintomas</label>
-                    <textarea type="text" class="form-control" formControlName="symptoms" placeholder="Ingrese los sintomas"></textarea>
+                    <textarea type="text" class="form-control" formControlName="symptoms" placeholder="Ingrese los sintomas" [disabled]="false"></textarea>
                     <span class="text-danger" *ngIf="form?.get('symptoms').status != 'VALID' && form.get('symptoms').touched">El detalle es obligatorio.</span>
                 </div>
                 <div class="form-group mb-3">
@@ -29,7 +31,7 @@
                         <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Guardar Historia Clinica</button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-warning btn-block" routerLink="/patient/dashboard">Salir</button>
+                        <button type="button" class="btn btn-warning btn-block" routerLink="/professional/dashboard">Salir</button>
                     </div>
                 </div>
             </form>
